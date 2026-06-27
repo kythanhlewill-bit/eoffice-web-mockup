@@ -21,6 +21,7 @@ var EO = (function () {
     { grp: 'E-CONTRACT' },
     { t: 'Danh sách hợp đồng', ic: 'ti-list-details', key: 'list', href: 'danh-sach.html' },
     { t: 'Tạo hợp đồng', ic: 'ti-file-plus', key: 'create', href: 'tao-hop-dong.html' },
+    { t: 'Bộ mẫu (đa quy trình)', ic: 'ti-template', key: 'bomau', href: 'bo-mau.html' },
     { t: 'Cấu hình quy trình', ic: 'ti-hierarchy-3', key: 'wf', href: 'cau-hinh-quy-trinh.html' },
     { t: 'Cấu hình form động', ic: 'ti-forms', key: 'form', href: 'cau-hinh-form-dong.html' },
     { grp: 'HỆ THỐNG' },
