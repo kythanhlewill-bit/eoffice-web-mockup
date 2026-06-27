@@ -1,100 +1,101 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Phê duyệt hồ sơ (trang chung)</title><link rel="stylesheet" href="styles.css">
+<title>Đề nghị chờ phê duyệt</title><link rel="stylesheet" href="styles.css">
 <style>
 .grp-row td{background:#eef3f8 !important;font-weight:700;font-size:12px;color:var(--navy)}
 .grp-ec td{background:#e8f1f8 !important}
-.tbl .ck input{cursor:pointer}
 .muted-ck{color:#c3ccd6;text-align:center}
 .bulkbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .bulkbar .sp{margin-left:auto}
+.hidden{display:none !important}
 </style></head>
 <body>
 <div class="eo-content">
-  <div class="page-title">Phê duyệt hồ sơ
-    <small>Trang phê duyệt dùng chung cho mọi loại văn bản (Thanh toán, Đề nghị, Hợp đồng, E-Contract…). Riêng <b>E-Contract</b> hỗ trợ <b>chọn nhiều</b> → Duyệt/Từ chối <b>hàng loạt</b> hoặc <b>tất cả</b> (toàn bộ kết quả đã lọc). Các loại khác duyệt từng phiếu như hiện tại.</small></div>
+  <div class="page-title">Đề nghị chờ phê duyệt
+    <small>Trang phê duyệt dùng chung mọi loại đề nghị. Riêng <b>E-Contract</b> hỗ trợ chọn nhiều phiếu để Duyệt/Từ chối cùng lúc (xử lý nền). Các loại khác duyệt từng phiếu.</small></div>
 
-  <!-- BỘ LỌC (theo màn DocumentApproval/Index) -->
+  <!-- BỘ LỌC (theo màn Đề nghị chờ phê duyệt) -->
   <div class="card"><div class="card-b">
     <div class="grid grid-4">
-      <div class="field"><label>Ngày tạo</label><input value="01/06/2026 - 30/06/2026"></div>
-      <div class="field"><label>Công ty</label><select><option>Tất cả</option><option>MCH - An</option><option>VHW</option></select></div>
-      <div class="field"><label>Khối</label><select><option>Tất cả</option><option>Nhân sự</option><option>Vận hành</option></select></div>
-      <div class="field"><label>Loại văn bản</label><select><option>Tất cả</option><option>E-Contract</option><option>Thanh toán</option><option>Đề nghị</option></select></div>
-      <div class="field"><label>Trạng thái</label><select><option>Chờ duyệt</option><option>Tất cả</option></select></div>
-      <div class="field"><label>Người tạo</label><input placeholder="Tên / username"></div>
-      <div class="field"><label>Người phê duyệt tiếp theo</label><select><option>Tất cả</option><option>Tôi</option></select></div>
-      <div class="field"><label>Ký số</label><select><option>Tất cả</option><option>Có</option><option>Không</option></select></div>
+      <div class="field"><label>Nhóm đề nghị</label><select><option>Tất cả</option><option>E-Contract</option><option>Thanh toán</option><option>Đề nghị</option><option>Tờ trình</option></select></div>
+      <div class="field" style="grid-column:span 2"><label>Mã công ty / Mã yêu cầu / Nội dung</label><input placeholder="Mã công ty/Mã yêu cầu/Nội dung"></div>
+      <div class="field"><label>Người tạo</label><input placeholder="Nhập tên người tạo"></div>
     </div>
-    <div class="grid grid-4" style="margin-top:14px">
-      <div class="field" style="grid-column:span 2"><label>Từ khóa</label><input placeholder="Tìm kiếm: mã yêu cầu, tiêu đề, nội dung..."></div>
-      <div class="bar" style="grid-column:span 2"><span class="sp"></span>
-        <button class="btn btn-primary btn-sm"><i class="ti ti-search"></i> Tìm kiếm</button>
-        <button class="btn btn-ghost btn-sm"><i class="ti ti-file-export"></i> Xuất Excel</button>
-      </div>
-    </div>
+    <div class="bar" style="margin-top:14px"><span class="sp"></span><button class="btn btn-primary btn-sm"><i class="ti ti-search"></i> Tìm kiếm</button></div>
   </div></div>
+
+  <div class="bar" style="margin-bottom:8px"><span style="font-weight:700;color:var(--navy)">Tổng số tìm thấy: 88 đề nghị</span></div>
 
   <!-- DANH SÁCH (1 bảng phẳng dùng chung; checkbox chỉ bật ở dòng E-Contract) -->
   <div class="tbl-wrap"><table class="tbl">
     <thead><tr>
       <th class="ck"></th>
-      <th style="width:42px">STT</th><th>Mã yêu cầu</th><th>Công ty</th><th>Khối</th><th>Loại văn bản</th>
-      <th>Tiêu đề</th><th>Trạng thái</th><th>Người tạo</th><th>Ngày tạo</th><th>Người duyệt tiếp theo</th><th style="width:60px">#</th>
+      <th>Mã yêu cầu</th><th>Loại đề nghị</th><th>Công ty</th><th>Nội dung</th>
+      <th>Tổng tiền</th><th>Người tạo</th><th>Ngày tạo</th><th>Gửi lúc</th><th style="width:56px">#</th>
     </tr></thead>
     <tbody>
-      <!-- NHÓM KHÁC: không checkbox, duyệt từng phiếu -->
-      <tr class="grp-row"><td colspan="12"><i class="ti ti-folder"></i> Loại khác — duyệt từng phiếu</td></tr>
+      <!-- NHÓM KHÁC: không checkbox -->
+      <tr class="grp-row"><td colspan="10"><i class="ti ti-folder"></i> Loại khác — duyệt từng phiếu</td></tr>
       <tr>
-        <td class="muted-ck">—</td><td>1</td><td><span class="tag-mono">PMMCH06250040</span></td><td>MCH</td><td>Tài chính</td><td>Thanh toán</td>
-        <td>TT nhà cung cấp Phúc Long</td><td><span class="bdg a">Chờ duyệt</span></td><td>anhpt</td><td>02-06-2026 09:14</td><td>Kế toán trưởng</td>
+        <td class="muted-ck">—</td><td><span class="tag-mono">PMMCH06250040</span></td><td>Thanh toán</td><td>MCH</td><td>TT nhà cung cấp Phúc Long</td>
+        <td>152.000.000</td><td>anhpt</td><td>02-06-2026</td><td>09:14</td>
         <td><span class="row-act" onclick="location.href='chi-tiet.html'">Duyệt</span></td>
       </tr>
       <tr>
-        <td class="muted-ck">—</td><td>2</td><td><span class="tag-mono">DNVHW06250007</span></td><td>VHW</td><td>Vận hành</td><td>Đề nghị</td>
-        <td>Đề nghị mua văn phòng phẩm</td><td><span class="bdg a">Chờ duyệt</span></td><td>binhlt</td><td>03-06-2026 08:02</td><td>Trưởng phòng</td>
+        <td class="muted-ck">—</td><td><span class="tag-mono">DNVHW06250007</span></td><td>Đề nghị</td><td>VHW</td><td>Đề nghị mua văn phòng phẩm</td>
+        <td>3.500.000</td><td>binhlt</td><td>03-06-2026</td><td>08:02</td>
         <td><span class="row-act" onclick="location.href='chi-tiet.html'">Duyệt</span></td>
       </tr>
 
       <!-- NHÓM E-CONTRACT: checkbox + thanh nút bulk ở group header -->
-      <tr class="grp-row grp-ec"><td colspan="12">
+      <tr class="grp-row grp-ec"><td colspan="10">
         <div class="bulkbar">
-          <label style="display:inline-flex;align-items:center;gap:6px"><input type="checkbox" onclick="document.querySelectorAll('.rk').forEach(c=>c.checked=this.checked)"> <i class="ti ti-file-check"></i> E-Contract — 86 phiếu chờ duyệt · đã chọn <b>3</b></label>
+          <label style="display:inline-flex;align-items:center;gap:6px"><input type="checkbox" id="ecMaster" onclick="ecToggleAll(this)"> <i class="ti ti-file-check"></i> E-Contract — 86 phiếu chờ duyệt</label>
+          <span id="ecCount" class="hint"></span>
           <span class="sp"></span>
-          <button class="btn btn-success btn-sm" onclick="EO.openModal('mApprove')"><i class="ti ti-check"></i> Duyệt hàng loạt</button>
-          <button class="btn btn-danger btn-sm" onclick="EO.openModal('mReject')"><i class="ti ti-x"></i> Từ chối hàng loạt</button>
-          <button class="btn btn-ghost btn-sm" onclick="EO.openModal('mApprove')"><i class="ti ti-checks"></i> Duyệt tất cả (đã lọc)</button>
-          <button class="btn btn-ghost btn-sm" onclick="EO.openModal('mReject')"><i class="ti ti-ban"></i> Từ chối tất cả</button>
+          <!-- Hiện khi CÓ tick -->
+          <span id="ecSel" class="hidden" style="display:flex;gap:8px">
+            <button class="btn btn-success btn-sm" onclick="EO.openModal('mApprove')"><i class="ti ti-check"></i> Duyệt</button>
+            <button class="btn btn-danger btn-sm" onclick="EO.openModal('mReject')"><i class="ti ti-x"></i> Từ chối</button>
+          </span>
+          <!-- Hiện khi KHÔNG tick -->
+          <span id="ecAll" style="display:flex;gap:8px">
+            <button class="btn btn-ghost btn-sm" onclick="EO.openModal('mApprove')"><i class="ti ti-checks"></i> Duyệt tất cả (đã lọc)</button>
+            <button class="btn btn-ghost btn-sm" onclick="EO.openModal('mReject')"><i class="ti ti-ban"></i> Từ chối tất cả</button>
+          </span>
         </div>
       </td></tr>
       <tr>
-        <td class="ck"><input type="checkbox" class="rk" checked></td><td>3</td><td><span class="tag-mono">ECMCH06250001</span></td><td>MCH</td><td>Nhân sự</td><td>HĐLĐ</td>
-        <td>HĐLĐ — Trần Nhật Vy</td><td><span class="bdg a">Chờ duyệt</span></td><td>thanhnq2</td><td>02-06-2026 10:20</td><td>GĐ Nhân sự</td>
+        <td class="ck"><input type="checkbox" class="rk" onclick="ecRefresh()"></td><td><span class="tag-mono">ECMCH06250001</span></td><td>HĐLĐ</td><td>MCH</td><td>HĐLĐ — Trần Nhật Vy</td>
+        <td>—</td><td>thanhnq2</td><td>02-06-2026</td><td>10:20</td>
         <td><span class="row-act" onclick="location.href='chi-tiet.html'">Xem</span></td>
       </tr>
       <tr>
-        <td class="ck"><input type="checkbox" class="rk" checked></td><td>4</td><td><span class="tag-mono">ECMCH06250011</span></td><td>MCH</td><td>Nhân sự</td><td>HĐLĐ</td>
-        <td>HĐLĐ — Nguyễn Văn An</td><td><span class="bdg a">Chờ duyệt</span></td><td>thanhnq2</td><td>02-06-2026 10:21</td><td>GĐ Nhân sự</td>
+        <td class="ck"><input type="checkbox" class="rk" onclick="ecRefresh()"></td><td><span class="tag-mono">ECMCH06250011</span></td><td>HĐLĐ</td><td>MCH</td><td>HĐLĐ — Nguyễn Văn An</td>
+        <td>—</td><td>thanhnq2</td><td>02-06-2026</td><td>10:21</td>
         <td><span class="row-act" onclick="location.href='chi-tiet.html'">Xem</span></td>
       </tr>
       <tr>
-        <td class="ck"><input type="checkbox" class="rk" checked></td><td>5</td><td><span class="tag-mono">ECMCH06250012</span></td><td>MCH</td><td>Nhân sự</td><td>HĐLĐ</td>
-        <td>HĐLĐ — Trịnh Thị Bình</td><td><span class="bdg a">Chờ duyệt</span></td><td>thanhnq2</td><td>02-06-2026 10:22</td><td>GĐ Nhân sự</td>
+        <td class="ck"><input type="checkbox" class="rk" onclick="ecRefresh()"></td><td><span class="tag-mono">ECMCH06250012</span></td><td>HĐLĐ</td><td>MCH</td><td>HĐLĐ — Trịnh Thị Bình</td>
+        <td>—</td><td>thanhnq2</td><td>02-06-2026</td><td>10:22</td>
         <td><span class="row-act" onclick="location.href='chi-tiet.html'">Xem</span></td>
       </tr>
       <tr>
-        <td class="ck"><input type="checkbox" class="rk"></td><td>6</td><td><span class="tag-mono">ECMCH06250015</span></td><td>MCH</td><td>Nhân sự</td><td>Phụ lục HĐLĐ</td>
-        <td>Phụ lục HĐLĐ — Lê Văn Cường</td><td><span class="bdg a">Chờ duyệt</span></td><td>linhvq</td><td>03-06-2026 14:05</td><td>GĐ Nhân sự</td>
+        <td class="ck"><input type="checkbox" class="rk" onclick="ecRefresh()"></td><td><span class="tag-mono">ECMCH06250015</span></td><td>Phụ lục HĐLĐ</td><td>MCH</td><td>Phụ lục HĐLĐ — Lê Văn Cường</td>
+        <td>—</td><td>linhvq</td><td>03-06-2026</td><td>14:05</td>
         <td><span class="row-act" onclick="location.href='chi-tiet.html'">Xem</span></td>
       </tr>
     </tbody>
   </table></div>
 
-  <!-- Phân trang (dùng chung của trang duyệt) -->
-  <div class="bar" style="margin-top:10px">
-    <span class="hint">Hiển thị 1–6 / 88 · "Tất cả" áp cho toàn bộ phiếu E-Contract khớp bộ lọc (vượt trang hiện tại). Mỗi phiếu vẫn kiểm tra quyền + trạng thái riêng; phiếu không hợp lệ bị bỏ qua &amp; báo.</span>
+  <!-- Phân trang -->
+  <div class="bar" style="margin-top:12px">
+    <span class="hint">Hiển thị 1–6 / 88 · "Tất cả" áp cho toàn bộ phiếu E-Contract khớp bộ lọc (vượt trang). Mỗi phiếu vẫn kiểm tra quyền + trạng thái riêng; phiếu không hợp lệ bị bỏ qua &amp; báo.</span>
     <span class="sp"></span>
-    <button class="btn btn-ghost btn-sm">‹</button><button class="btn btn-primary btn-sm">1</button><button class="btn btn-ghost btn-sm">2</button><button class="btn btn-ghost btn-sm">›</button>
+    <div class="field" style="margin:0"><select style="padding:6px 8px"><option>10 / trang</option><option>20 / trang</option><option>50 / trang</option></select></div>
+    <button class="btn btn-ghost btn-sm">«</button><button class="btn btn-ghost btn-sm">‹</button>
+    <button class="btn btn-primary btn-sm">1</button><button class="btn btn-ghost btn-sm">2</button><button class="btn btn-ghost btn-sm">3</button>
+    <button class="btn btn-ghost btn-sm">›</button><button class="btn btn-ghost btn-sm">»</button>
   </div>
 
   <!-- Kết quả lô gần nhất -->
@@ -108,7 +109,7 @@
 <div class="ov" id="mApprove" style="display:none"><div class="modal" style="width:520px">
   <div class="modal-h">Xác nhận duyệt<span class="x" onclick="EO.closeModal('mApprove')"><i class="ti ti-x"></i></span></div>
   <div class="modal-b">
-    <p style="margin:0 0 12px">Bạn sắp <b>Duyệt 3 hợp đồng E-Contract</b> đã chọn. Hệ thống kiểm tra quyền &amp; trạng thái từng phiếu rồi đẩy vào hàng đợi xử lý nền (trả mã lô để theo dõi).</p>
+    <p style="margin:0 0 12px">Hệ thống kiểm tra quyền &amp; trạng thái từng phiếu rồi đẩy vào hàng đợi xử lý nền (trả mã lô để theo dõi).</p>
     <div class="field"><label>Ghi chú (áp dụng cả lô)</label><textarea rows="2" placeholder="Tùy chọn"></textarea></div>
     <div class="note" style="margin-top:12px">Phiếu nào không còn ở bước của bạn sẽ bị bỏ qua &amp; báo lại — không ảnh hưởng phiếu khác.</div>
     <div class="bar" style="margin-top:14px"><span class="sp"></span><button class="btn btn-ghost" onclick="EO.closeModal('mApprove')">Hủy</button><button class="btn btn-success" onclick="EO.closeModal('mApprove')">Xác nhận duyệt</button></div>
@@ -123,5 +124,19 @@
   </div>
 </div></div>
 
-<script src="layout.js"></script><script>EO.mount({crumb:'E-Contract / Phê duyệt hồ sơ', active:'approve'});</script>
+<script src="layout.js"></script>
+<script>
+EO.mount({crumb:'Đề nghị chờ phê duyệt', active:'approve'});
+// Ẩn/hiện nút Duyệt|Từ chối (khi có tick) vs Duyệt tất cả|Từ chối tất cả (khi không tick)
+function ecRefresh(){
+  var n = document.querySelectorAll('.rk:checked').length;
+  document.getElementById('ecSel').classList.toggle('hidden', n===0);
+  document.getElementById('ecAll').classList.toggle('hidden', n>0);
+  document.getElementById('ecCount').textContent = n>0 ? ('— đã chọn '+n) : '';
+  var all = document.querySelectorAll('.rk').length;
+  document.getElementById('ecMaster').checked = (n>0 && n===all);
+}
+function ecToggleAll(m){ document.querySelectorAll('.rk').forEach(function(c){c.checked=m.checked;}); ecRefresh(); }
+ecRefresh();
+</script>
 </body></html>
