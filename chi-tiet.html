@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chi tiết E-Contract</title><link rel="stylesheet" href="styles.css">
+<style>.two{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}@media(max-width:1100px){.two{grid-template-columns:1fr}}</style></head>
+<body>
+<div class="eo-content">
+  <div class="bar">
+    <div class="page-title" style="margin:0">Chi tiết hợp đồng — <span class="tag-mono">ECMCH06250001</span>
+      <small>Hợp đồng lao động · Trần Nhật Vy · BU MCH</small></div>
+    <span class="sp"></span><span class="bdg b" style="font-size:12px;padding:5px 12px">Đang xử lý</span>
+  </div>
+
+  <!-- Thanh thao tác vòng đời -->
+  <div class="bar" style="margin:12px 0 16px">
+    <button class="btn btn-ghost btn-sm" disabled title="Chỉ ở trạng thái Nháp">✎ Sửa</button>
+    <button class="btn btn-primary btn-sm" disabled>↥ Gửi duyệt</button>
+    <button class="btn btn-ghost btn-sm">⭳ Tải PDF</button>
+    <button class="btn btn-ghost btn-sm">↻ Gửi lại link ký</button>
+    <span class="sp"></span>
+    <button class="btn btn-danger btn-sm">✕ Hủy ký</button>
+  </div>
+
+  <div class="two">
+    <div>
+      <div class="card"><div class="card-h"><span class="pill blue">Thông tin chung</span></div><div class="card-b">
+        <div class="kv">
+          <div class="k">Mã HĐ / Số HĐ</div><div><span class="tag-mono">ECMCH06250001</span> · 6370100/HĐ-WCM/260602-01</div>
+          <div class="k">Loại hợp đồng</div><div>Hợp đồng lao động (Hợp đồng đào tạo nghề)</div>
+          <div class="k">Người lao động</div><div>Trần Nhật Vy — 6370100</div>
+          <div class="k">Email / Mobile</div><div>nhattvyy1501@gmail.com</div>
+          <div class="k">Công ty / BU / Function</div><div>WinCommerce · MCH · Testing Mass Upload</div>
+          <div class="k">Hiệu lực</div><div>02/06/2026 → 31/07/2026</div>
+          <div class="k">Người tạo</div><div>thanhnq2 · 02/06/2026</div>
+          <div class="k">Hình thức ký NLĐ</div><div>VNPT SmartCA (eKYC)</div>
+        </div>
+      </div></div>
+
+      <div class="card"><div class="card-h"><span class="pill">Dữ liệu field (merge)</span><span class="hint">EContractDocumentField</span></div><div class="card-b">
+        <div class="tbl-wrap"><table class="tbl"><thead><tr><th>FieldKey</th><th>Giá trị</th></tr></thead><tbody>
+          <tr><td><span class="tag-mono">H_LOAIHD</span></td><td>Hợp đồng đào tạo nghề</td></tr>
+          <tr><td><span class="tag-mono">H_GIOLAMVIEC</span></td><td>48</td></tr>
+          <tr><td><span class="tag-mono">H_WT1000</span></td><td>5.500.000</td></tr>
+          <tr><td><span class="tag-mono">H_WT1000_TEXT</span></td><td><i>năm triệu năm trăm nghìn đồng</i> <span class="bdg g">computed</span></td></tr>
+          <tr><td><span class="tag-mono">H_RANK_HD</span></td><td>not3up</td></tr>
+        </tbody></table></div>
+      </div></div>
+
+      <div class="card"><div class="card-h"><span class="pill">Trạng thái ký</span></div><div class="card-b">
+        <div class="kv">
+          <div class="k">Doanh nghiệp (AHA)</div><div><span class="bdg gr">Đã ký</span> — VNPT SmartCA TH · 02/06/2026</div>
+          <div class="k">Người lao động</div><div><span class="bdg a">Chờ ký</span> — link gửi qua email/SMS, hạn 09/06/2026</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div>
+      <div class="card"><div class="card-h"><span class="pill blue">Tiến trình duyệt</span></div><div class="card-b">
+        <div class="steps">
+          <div class="step done"><div class="dot">✓</div><div><b>Tạo &amp; gửi duyệt</b><div class="hint">thanhnq2 · 02/06 09:12</div></div></div>
+          <div class="step done"><div class="dot">✓</div><div><b>Trưởng phòng NS duyệt</b><div class="hint">Nguyễn Q. Thành · 02/06 10:05</div></div></div>
+          <div class="step cur"><div class="dot">3</div><div><b>Giám đốc NS duyệt</b> <span class="bdg b">đang xử lý</span><div class="hint">Phạm Thị Thu Hương</div></div></div>
+          <div class="step"><div class="dot">4</div><div>Ký doanh nghiệp (tự động)<div class="hint">VNPT SmartCA TH</div></div></div>
+          <div class="step"><div class="dot">5</div><div>NLĐ ký (eKYC)<div class="hint">VNPT SmartCA</div></div></div>
+          <div class="step"><div class="dot">6</div><div>Lưu trữ &amp; đẩy SF</div></div>
+        </div>
+      </div></div>
+
+      <div class="card"><div class="card-h"><span class="pill">Lịch sử</span></div><div class="card-b">
+        <div class="kv" style="grid-template-columns:110px 1fr">
+          <div class="k">02/06 10:05</div><div>Trưởng phòng NS <b>Duyệt</b></div>
+          <div class="k">02/06 09:30</div><div>DN ký tự động (AHASigned=1)</div>
+          <div class="k">02/06 09:12</div><div>thanhnq2 <b>Gửi duyệt</b> (Draft → Đang xử lý)</div>
+          <div class="k">02/06 09:00</div><div>thanhnq2 tạo hợp đồng (import Excel)</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</div>
+<script src="layout.js"></script><script>EO.mount({crumb:'E-Contract / Chi tiết', active:'list'});</script>
+</body></html>

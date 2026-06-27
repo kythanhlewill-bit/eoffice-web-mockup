@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Danh sách E-Contract</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div class="eo-content">
+  <div class="page-title">Danh sách hợp đồng điện tử
+    <small>Quản lý/tra cứu hợp đồng theo BU được phân quyền. (Phê duyệt thực hiện ở màn “Phê duyệt hợp đồng”.)</small></div>
+
+  <!-- Bộ lọc -->
+  <div class="card"><div class="card-b">
+    <div class="grid grid-4">
+      <div class="field"><label>Công ty / BU</label><select><option>MCH - AN</option><option>WCM</option><option>VHW</option></select></div>
+      <div class="field"><label>Loại hợp đồng</label><select><option>Tất cả</option><option>Hợp đồng lao động</option><option>Phụ lục HĐLĐ</option><option>QĐ chấm dứt HĐLĐ</option></select></div>
+      <div class="field"><label>Trạng thái</label><select><option>Tất cả</option><option>Nháp</option><option>Đang xử lý</option><option>Chờ NLĐ ký</option><option>Hoàn tất</option></select></div>
+      <div class="field"><label>Tìm kiếm</label><input placeholder="Mã HĐ / Số HĐ / Tên NLĐ"></div>
+    </div>
+    <div class="bar" style="margin-top:12px">
+      <button class="btn btn-primary btn-sm"><i class="ti ti-search"></i> Lọc</button>
+      <button class="btn btn-ghost btn-sm"><i class="ti ti-eraser"></i> Xóa lọc</button>
+      <span class="sp"></span>
+      <button class="btn btn-ghost btn-sm"><i class="ti ti-file-spreadsheet"></i> Xuất Excel</button>
+      <button class="btn btn-primary btn-sm" onclick="location.href='tao-hop-dong.html'"><i class="ti ti-plus"></i> Tạo hợp đồng</button>
+    </div>
+  </div></div>
+
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr>
+        <th>Mã HĐ</th><th>Số hợp đồng</th><th>Loại HĐ</th><th>Người lao động</th><th>BU</th>
+        <th>Trạng thái</th><th>Ngày tạo</th><th>Người tạo</th><th>Thao tác</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><span class="tag-mono">ECMCH06250001</span></td><td>6370100/HĐ-WCM/260602-01</td><td>Hợp đồng lao động</td><td>Trần Nhật Vy</td><td>MCH</td><td><span class="bdg b">Đang xử lý</span></td><td>02/06/2026</td><td>thanhnq2</td><td><span class="row-act" onclick="location.href='chi-tiet.html'"><i class="ti ti-eye"></i> Xem</span></td></tr>
+        <tr><td><span class="tag-mono">ECMCH06250002</span></td><td>14VH00185/2026/PLHĐ-VHW</td><td>Phụ lục HĐLĐ</td><td>Nguyễn Thị Hồng Gấm</td><td>VHW</td><td><span class="bdg b">Đang xử lý</span></td><td>02/06/2026</td><td>duyenttt</td><td><span class="row-act" onclick="location.href='chi-tiet.html'"><i class="ti ti-eye"></i> Xem</span></td></tr>
+        <tr><td><span class="tag-mono">ECMCH06250003</span></td><td>19SF01110/2026/HĐLĐ</td><td>Hợp đồng lao động</td><td>Cao Thị Trang</td><td>MSC</td><td><span class="bdg g">Nháp</span></td><td>03/06/2026</td><td>kylt</td><td><span class="row-act" onclick="location.href='chi-tiet.html'"><i class="ti ti-eye"></i> Xem</span> · <span class="row-act"><i class="ti ti-pencil"></i> Sửa</span></td></tr>
+        <tr><td><span class="tag-mono">ECMCH06250004</span></td><td>22NV0091/2026/HĐLĐ</td><td>Hợp đồng lao động</td><td>Phạm Văn Hùng</td><td>MCH</td><td><span class="bdg a">Chờ NLĐ ký</span></td><td>01/06/2026</td><td>thanhnq2</td><td><span class="row-act" onclick="location.href='chi-tiet.html'"><i class="ti ti-eye"></i> Xem</span></td></tr>
+        <tr><td><span class="tag-mono">ECMCH05250098</span></td><td>QĐ-2026-0451/CD-HĐLĐ</td><td>QĐ chấm dứt HĐLĐ</td><td>Lê Thị Mai</td><td>MCH</td><td><span class="bdg gr">Hoàn tất</span></td><td>28/05/2026</td><td>kylt</td><td><span class="row-act" onclick="location.href='chi-tiet.html'"><i class="ti ti-eye"></i> Xem</span> · <span class="row-act"><i class="ti ti-download"></i> Tải</span></td></tr>
+        <tr><td><span class="tag-mono">ECMCH05250070</span></td><td>HĐLĐ-2026-0309</td><td>Hợp đồng lao động</td><td>Đỗ Quang Huy</td><td>NET</td><td><span class="bdg r">Hủy ký</span></td><td>20/05/2026</td><td>linhvq</td><td><span class="row-act" onclick="location.href='chi-tiet.html'"><i class="ti ti-eye"></i> Xem</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bar" style="margin-top:10px">
+    <span class="hint">Hiển thị 1–6 / 1.248 hợp đồng</span>
+    <span class="sp"></span>
+    <button class="btn btn-ghost btn-sm">‹ Trước</button>
+    <button class="btn btn-sm" style="background:var(--blue);color:#fff">1</button>
+    <button class="btn btn-ghost btn-sm">2</button><button class="btn btn-ghost btn-sm">3</button>
+    <button class="btn btn-ghost btn-sm">Sau ›</button>
+  </div>
+</div>
+<script src="layout.js"></script><script>EO.mount({crumb:'E-Contract / Danh sách hợp đồng', active:'list'});</script>
+</body></html>

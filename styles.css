@@ -1,0 +1,154 @@
+/* EOffice EContract — mockup stylesheet (gần giao diện EOffice hiện tại) */
+:root{
+  --navy:#0c2d4d; --navy-2:#0a2236; --navy-line:#1d456b;
+  --blue:#2680c2; --blue-d:#1f6aa3; --blue-soft:#e8f1f8;
+  --bg:#eef1f4; --card:#ffffff; --line:#d9dfe6; --line-2:#e8ecf1;
+  --text:#23303a; --muted:#6b7785;
+  --g:#6b7785; --g-bg:#eef0f2;
+  --b:#2680c2; --b-bg:#e8f1f8;
+  --t:#0f9b8e; --t-bg:#e1f4f1;
+  --gr:#3e8e41; --gr-bg:#eaf4e6;
+  --r:#c0392b; --r-bg:#fdecea;
+  --a:#b9770b; --a-bg:#fdf3e2;
+  --hdr-h:52px; --side-w:218px;
+  --radius:8px;
+  font-synthesis:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:Arial,"Segoe UI",sans-serif;font-size:13px;color:var(--text);background:var(--bg)}
+
+/* ---------- Header ---------- */
+.eo-header{position:fixed;top:0;left:0;right:0;height:var(--hdr-h);background:var(--navy);
+  display:flex;align-items:center;color:#fff;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.eo-logo{width:var(--side-w);height:100%;background:var(--navy-2);display:flex;align-items:center;gap:8px;padding:0 14px}
+.eo-logo .mk{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#2f7fc0,#1c4e7a);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px}
+.eo-logo b{font-size:16px;letter-spacing:.5px}
+.eo-burger{padding:0 16px;font-size:18px;color:#cdd9e6;cursor:pointer}
+.eo-crumb{font-size:13px;color:#d6e2ef}
+.eo-crumb b{color:#fff}
+.eo-right{margin-left:auto;display:flex;align-items:center;gap:14px;padding-right:16px}
+.eo-bu{background:#15527e;border:1px solid #2f78ad;color:#fff;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700}
+.eo-user{font-size:12px;color:#dfe9f2}
+.eo-ava{width:28px;height:28px;border-radius:50%;background:#2f7fc0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+/* ---------- Sidebar ---------- */
+.eo-side{position:fixed;top:var(--hdr-h);bottom:0;left:0;width:var(--side-w);background:var(--navy);
+  overflow-y:auto;z-index:40;padding:8px 0}
+.eo-side::-webkit-scrollbar{width:7px}.eo-side::-webkit-scrollbar-thumb{background:#1d456b;border-radius:4px}
+.eo-mi{display:flex;align-items:center;gap:10px;padding:9px 16px;color:#c4d2e0;font-size:12.5px;cursor:pointer;border-left:3px solid transparent;white-space:nowrap}
+.eo-mi:hover{background:#103a5e;color:#fff}
+.eo-mi .ic{width:16px;text-align:center;opacity:.85}
+.eo-mi.grp{color:#9fb3c6;font-size:11px;text-transform:uppercase;letter-spacing:.5px;cursor:default;padding-top:12px}
+.eo-mi.sub{padding-left:34px;font-size:12.5px}
+.eo-mi.active{background:#0e375a;color:#fff;border-left-color:var(--blue);font-weight:700}
+
+/* ---------- Content ---------- */
+.eo-content{margin-left:var(--side-w);margin-top:var(--hdr-h);padding:18px 22px 60px}
+.page-title{font-size:18px;font-weight:700;color:var(--navy);margin:2px 0 14px}
+.page-title small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:3px}
+
+/* ---------- Card ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:16px}
+.card-h{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line-2)}
+.card-b{padding:14px}
+.pill{display:inline-block;background:var(--navy);color:#fff;border-radius:16px;padding:5px 14px;font-size:12px;font-weight:700}
+.pill.blue{background:var(--blue)}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;border-radius:6px;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;text-decoration:none}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:var(--blue-d)}
+.btn-ghost{background:#fff;color:var(--navy);border-color:var(--line)}
+.btn-success{background:var(--gr);color:#fff}
+.btn-danger{background:var(--r);color:#fff}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bar .sp{margin-left:auto}
+
+/* ---------- Fields ---------- */
+.grid{display:grid;gap:12px 16px}
+.grid-2{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr 1fr}.grid-4{grid-template-columns:repeat(4,1fr)}
+.field{position:relative;margin-top:6px}
+.field>label{position:absolute;top:-7px;left:9px;background:#fff;padding:0 4px;font-size:11px;color:var(--muted)}
+.field>label .req{color:var(--r)}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:6px;padding:9px 10px;font-size:13px;color:var(--text);background:#fff;font-family:inherit}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue)}
+.field input[readonly]{background:#f4f6f8;color:#55606b}
+.hint{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* ---------- Table ---------- */
+.tbl{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px}
+.tbl th{background:var(--navy);color:#fff;font-weight:700;text-align:left;padding:9px 10px;border:1px solid var(--navy-line);white-space:nowrap}
+.tbl td{padding:8px 10px;border:1px solid var(--line-2);vertical-align:middle}
+.tbl tr:nth-child(even) td,.tbl tbody tr:nth-child(even){background:#f7f9fb}
+.tbl td .field{margin-top:0}
+.tbl-wrap{overflow:auto;border:1px solid var(--line);border-radius:var(--radius)}
+.tbl .ck{width:34px;text-align:center}
+.row-act{color:var(--blue);cursor:pointer;font-weight:700}
+.row-act.del{color:var(--r)}
+
+/* ---------- Status badge ---------- */
+.bdg{display:inline-block;border-radius:14px;padding:3px 10px;font-size:11px;font-weight:700;white-space:nowrap}
+.bdg.g{background:var(--g-bg);color:var(--g)}
+.bdg.b{background:var(--b-bg);color:var(--b)}
+.bdg.t{background:var(--t-bg);color:var(--t)}
+.bdg.gr{background:var(--gr-bg);color:var(--gr)}
+.bdg.r{background:var(--r-bg);color:var(--r)}
+.bdg.a{background:var(--a-bg);color:var(--a)}
+
+/* ---------- Tabs ---------- */
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--line);margin-bottom:16px}
+.tab{padding:9px 16px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tabpane{display:none}.tabpane.active{display:block}
+
+/* ---------- Toggle ---------- */
+.tg{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text)}
+.tg input{display:none}
+.tg .track{width:34px;height:18px;border-radius:10px;background:#c3ccd6;position:relative;transition:.15s}
+.tg .track::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.15s}
+.tg input:checked+.track{background:var(--blue)}
+.tg input:checked+.track::after{transform:translateX(16px)}
+
+/* ---------- Modal ---------- */
+.ov{position:fixed;inset:0;background:rgba(8,22,38,.55);display:flex;align-items:flex-start;justify-content:center;padding-top:60px;z-index:60}
+.modal{background:#fff;border-radius:10px;width:760px;max-width:94%;box-shadow:0 12px 40px rgba(0,0,0,.3);overflow:hidden}
+.modal-h{background:var(--navy);color:#fff;padding:12px 16px;font-weight:700;display:flex;align-items:center}
+.modal-h .x{margin-left:auto;cursor:pointer;opacity:.8}
+.modal-b{padding:16px}
+
+/* ---------- Misc ---------- */
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line-2)}
+.step:last-child{border-bottom:0}
+.step .dot{width:24px;height:24px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex:0 0 auto}
+.step.done .dot{background:var(--gr-bg);color:var(--gr)}
+.step.cur .dot{background:var(--blue);color:#fff}
+.kv{display:grid;grid-template-columns:160px 1fr;gap:8px 12px;font-size:12.5px}
+.kv .k{color:var(--muted)}
+.note{background:var(--blue-soft);border:1px solid #cfe2f2;border-left:3px solid var(--blue);border-radius:6px;padding:10px 12px;font-size:12px;color:#234}
+.foot{margin-left:var(--side-w);text-align:center;color:#9aa6b2;font-size:11px;padding:14px}
+.tag-mono{font-family:Consolas,monospace;font-size:11.5px;background:#f0f2f5;border:1px solid var(--line-2);border-radius:4px;padding:1px 6px;color:#3a4a57}
+
+/* ===== Override: gần theme Modernize/Tabler của EOffice ===== */
+.ti{font-size:16px;line-height:1;vertical-align:-2px}
+/* header */
+.eo-crumb .ti{font-size:13px;color:#8fb0cc;vertical-align:-1px}
+.eo-right{gap:16px}
+.eo-ico{color:#cdd9e6;font-size:17px;cursor:pointer}
+.eo-user small{color:#9fb6cb;font-size:10px}
+.eo-bu{display:inline-flex;align-items:center;gap:5px}
+/* sidebar Modernize */
+.eo-side{padding:10px 10px}
+.eo-cap{display:flex;align-items:center;gap:7px;color:#6f87a0;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:14px 10px 6px}
+.eo-cap .ti{font-size:13px;opacity:.7}
+.eo-mi{display:flex;align-items:center;gap:11px;padding:9px 11px;color:#bccbda;font-size:12.5px;cursor:pointer;border-left:none;border-radius:7px;margin:1px 0;white-space:nowrap}
+.eo-mi .ti{font-size:18px;opacity:.9;width:20px;text-align:center}
+.eo-mi:hover{background:#103a5e;color:#fff}
+.eo-mi.active{background:var(--blue);color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(38,128,194,.45)}
+.eo-mi.active .ti{opacity:1}
+/* cards & buttons mềm hơn */
+.card{border-radius:10px;box-shadow:0 1px 3px rgba(20,40,60,.05)}
+.btn{border-radius:7px}
+.tbl-wrap{border-radius:10px}

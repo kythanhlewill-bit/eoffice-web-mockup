@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tạo hợp đồng E-Contract</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div class="eo-content tabs-root">
+  <div class="page-title">Tạo hợp đồng điện tử
+    <small>Cả 3 nguồn đều hội tụ về create core (EContractCreation) → sinh DocumentGeneral + EContractDocument + workflow.</small></div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="EO.tab(this,'pane-form')">① Form động</div>
+    <div class="tab" onclick="EO.tab(this,'pane-sap')">② Từ SAP (IT9016)</div>
+    <div class="tab" onclick="EO.tab(this,'pane-excel')">③ Import Excel</div>
+  </div>
+
+  <!-- FORM ĐỘNG -->
+  <div class="tabpane active" id="pane-form">
+    <div class="card"><div class="card-h"><span class="pill blue">Chọn mẫu</span></div><div class="card-b">
+      <div class="grid grid-3">
+        <div class="field"><label>Công ty / BU</label><select><option>MCH - AN</option></select></div>
+        <div class="field"><label>Loại hợp đồng (mẫu) <span class="req">*</span></label><select><option>Hợp đồng lao động</option><option>Phụ lục HĐLĐ</option><option>Thư mời nhận việc</option></select></div>
+        <div class="field"><label>Bộ mẫu / Quy trình</label><input value="MCH_HDLD" readonly></div>
+      </div>
+    </div></div>
+
+    <div class="card"><div class="card-h"><span class="pill">Thông tin hợp đồng</span><span class="hint">Field render động theo DynamicField của mẫu</span></div><div class="card-b">
+      <div class="grid grid-3">
+        <div class="field"><label>Mã nhân viên (H_PERNR) <span class="req">*</span></label><input value="6370100"></div>
+        <div class="field"><label>Họ tên (H_TEN) <span class="req">*</span></label><input value="Trần Nhật Vy"></div>
+        <div class="field"><label>Email (H_EMAIL) <span class="req">*</span></label><input value="nhattvyy1501@gmail.com"></div>
+        <div class="field"><label>Chức danh (H_CHUCDANH)</label><input value="Nhân Viên DVKH - Thu ngân"></div>
+        <div class="field"><label>Loại HĐ (H_LOAIHD) — select/API <span class="req">*</span></label><select><option>Hợp đồng đào tạo nghề</option><option>HĐLĐ xác định thời hạn</option></select></div>
+        <div class="field"><label>Rank HĐ (H_RANK_HD) — routing</label><select><option>not3up</option><option>3up</option></select></div>
+        <div class="field"><label>Ngày bắt đầu (H_BATDAUHD) <span class="req">*</span></label><input value="02/06/2026"></div>
+        <div class="field"><label>Ngày kết thúc (H_KETTHUCHD)</label><input value="31/07/2026"></div>
+        <div class="field"><label>Giờ làm việc (H_GIOLAMVIEC)</label><input value="48"></div>
+        <div class="field"><label>Lương cơ bản (H_WT1000)</label><input value="5.500.000"></div>
+        <div class="field"><label>Pháp lý (H_PHAPLY)</label><input value="Công ty CP DVTM Tổng hợp WinCommerce"></div>
+        <div class="field"><label>Hình thức ký NLĐ</label><select><option>VNPT SmartCA (eKYC)</option></select></div>
+      </div>
+      <div class="note" style="margin-top:14px">Các field tính toán (vd <span class="tag-mono">H_WT1000_TEXT</span> = đọc số thành chữ, <span class="tag-mono">H_GIOLAMVIEC</span> làm tròn) được <b>server tự sinh</b> lúc lưu — không hiển thị trên form.</div>
+    </div></div>
+
+    <div class="bar"><button class="btn btn-ghost">⭙ Lưu nháp</button><span class="sp"></span>
+      <button class="btn btn-ghost" onclick="location.href='danh-sach.html'">Hủy</button>
+      <button class="btn btn-primary">Tạo &amp; gửi duyệt →</button></div>
+  </div>
+
+  <!-- SAP -->
+  <div class="tabpane" id="pane-sap">
+    <div class="card"><div class="card-h"><span class="pill blue">Lấy dữ liệu từ SAP HCM (IT9016)</span></div><div class="card-b">
+      <div class="grid grid-3">
+        <div class="field"><label>Công ty / BU</label><select><option>MCH - AN</option></select></div>
+        <div class="field"><label>Loại quyết định (IT9016)</label><select><option>HĐLĐ</option><option>Phụ lục</option></select></div>
+        <div class="field"><label>Mã nhân viên (MSNV)</label><input placeholder="vd 6370100 (nhiều mã cách nhau dấu ,)"></div>
+      </div>
+      <div class="bar" style="margin-top:12px"><button class="btn btn-primary btn-sm">⤓ Gọi dữ liệu từ SAP</button><span class="hint">Khai báo trên SAP IT9016 trước → pull về map field H_*</span></div>
+    </div></div>
+    <div class="card"><div class="card-h"><span class="pill">Kết quả pull (preview)</span></div><div class="card-b">
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th class="ck"><input type="checkbox" checked></th><th>MSNV</th><th>Họ tên</th><th>Loại HĐ</th><th>Hiệu lực</th><th>Lương</th><th>Kiểm tra</th></tr></thead>
+        <tbody>
+          <tr><td class="ck"><input type="checkbox" checked></td><td>19SF01110</td><td>Cao Thị Trang</td><td>MCH_36_L2</td><td>26/08/2026</td><td>—</td><td><span class="bdg gr">Hợp lệ</span></td></tr>
+          <tr><td class="ck"><input type="checkbox" checked></td><td>19SF01111</td><td>Cao Thị Trang</td><td>MCH_KXD</td><td>10/08/2026</td><td>—</td><td><span class="bdg gr">Hợp lệ</span></td></tr>
+          <tr><td class="ck"><input type="checkbox"></td><td>19SF01112</td><td>Cao Thị Trang</td><td>MCH_L1</td><td>—</td><td>—</td><td><span class="bdg r">Thiếu ngày HL</span></td></tr>
+        </tbody></table></div>
+      <div class="bar" style="margin-top:12px"><span class="sp"></span><button class="btn btn-primary">Tạo HĐ từ bản ghi đã chọn →</button></div>
+    </div></div>
+  </div>
+
+  <!-- EXCEL -->
+  <div class="tabpane" id="pane-excel">
+    <div class="card"><div class="card-h"><span class="pill blue">Import từ Excel</span></div><div class="card-b">
+      <div class="grid grid-3">
+        <div class="field"><label>Công ty / BU</label><select><option>MCH - AN</option></select></div>
+        <div class="field"><label>Bộ mẫu</label><select><option>MCH_HDLD</option></select></div>
+        <div class="field"><label>File Excel (.xlsx)</label><input value="MCH_EXCEL_IMPORT_PLHDLD.xlsx" readonly></div>
+      </div>
+      <div class="bar" style="margin-top:12px"><button class="btn btn-ghost btn-sm">⭳ Tải template chuẩn</button><button class="btn btn-ghost btn-sm">⭱ Chọn file</button><button class="btn btn-primary btn-sm">Upload &amp; kiểm tra</button><span class="hint">Boundary scan: cột dòng 3, data từ dòng 4, bắt buộc PARTNER-NAME/EMAIL/SIGN-TYPE, cross-check MSNV SAP</span></div>
+    </div></div>
+    <div class="card"><div class="card-h"><span class="pill">Kết quả import (F5 để cập nhật)</span><span class="bdg a">Đang xử lý 12/40</span></div><div class="card-b">
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Dòng</th><th>MSNV</th><th>Họ tên</th><th>Trạng thái</th><th>Diễn giải</th></tr></thead>
+        <tbody>
+          <tr><td>4</td><td>14VH00185</td><td>Nguyễn Thị Hồng Gấm</td><td><span class="bdg gr">Tạo OK</span></td><td>ECVHW06250012</td></tr>
+          <tr><td>5</td><td>14VH00186</td><td>Trần Văn B</td><td><span class="bdg gr">Tạo OK</span></td><td>ECVHW06250013</td></tr>
+          <tr><td>6</td><td>—</td><td>Lê Thị C</td><td><span class="bdg r">Lỗi</span></td><td>Thiếu PARTNER-EMAIL</td></tr>
+          <tr><td>7</td><td>99XX999</td><td>Phạm D</td><td><span class="bdg r">Lỗi</span></td><td>MSNV không tồn tại trên SAP</td></tr>
+          <tr><td>8</td><td>14VH00190</td><td>Hoàng E</td><td><span class="bdg b">Đang convert…</span></td><td>—</td></tr>
+        </tbody></table></div>
+      <div class="bar" style="margin-top:12px"><button class="btn btn-ghost btn-sm">⟳ Làm mới (F5)</button><button class="btn btn-ghost btn-sm">⭳ Tải file lỗi</button></div>
+    </div></div>
+  </div>
+</div>
+<script src="layout.js"></script><script>EO.mount({crumb:'E-Contract / Tạo hợp đồng', active:'create'});</script>
+</body></html>

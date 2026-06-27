@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phê duyệt hàng loạt</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div class="eo-content">
+  <div class="page-title">Phê duyệt hợp đồng — hàng loạt
+    <small>Hợp đồng cần xử lý (bạn là người duyệt hiện tại). Chọn nhiều → Duyệt/Từ chối → xử lý qua hàng đợi.</small></div>
+
+  <div class="card"><div class="card-b">
+    <div class="grid grid-4">
+      <div class="field"><label>Loại hợp đồng</label><select><option>Tất cả</option><option>Hợp đồng lao động</option></select></div>
+      <div class="field"><label>BU</label><select><option>Tất cả</option><option>MCH</option><option>VHW</option></select></div>
+      <div class="field"><label>Bước duyệt</label><select><option>Giám đốc NS duyệt</option></select></div>
+      <div class="field"><label>Tìm kiếm</label><input placeholder="Mã HĐ / Tên NLĐ"></div>
+    </div>
+  </div></div>
+
+  <div class="bar" style="margin-bottom:10px">
+    <span style="font-size:12px;color:var(--muted)">Đã chọn <b>3</b> / 86 hợp đồng cần xử lý</span>
+    <button class="btn btn-success btn-sm" onclick="EO.openModal('mApprove')">✔ Duyệt hàng loạt</button>
+    <button class="btn btn-danger btn-sm" onclick="EO.openModal('mReject')">✕ Từ chối hàng loạt</button>
+    <span class="sp"></span>
+    <span class="hint">Mỗi phiếu vẫn kiểm tra quyền + trạng thái riêng (phiếu không hợp lệ sẽ bỏ qua &amp; báo)</span>
+  </div>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr>
+      <th class="ck"><input type="checkbox" checked onclick="document.querySelectorAll('.rk').forEach(c=>c.checked=this.checked)"></th>
+      <th>Mã HĐ</th><th>Loại</th><th>Người lao động</th><th>BU</th><th>Bước hiện tại</th><th>Người tạo</th><th>Ngày gửi</th><th>#</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="ck"><input type="checkbox" class="rk" checked></td><td><span class="tag-mono">ECMCH06250001</span></td><td>HĐLĐ</td><td>Trần Nhật Vy</td><td>MCH</td><td>GĐ NS duyệt</td><td>thanhnq2</td><td>02/06</td><td><span class="row-act" onclick="location.href='chi-tiet.html'">Xem</span></td></tr>
+      <tr><td class="ck"><input type="checkbox" class="rk" checked></td><td><span class="tag-mono">ECMCH06250011</span></td><td>HĐLĐ</td><td>Nguyễn Văn An</td><td>MCH</td><td>GĐ NS duyệt</td><td>thanhnq2</td><td>02/06</td><td><span class="row-act" onclick="location.href='chi-tiet.html'">Xem</span></td></tr>
+      <tr><td class="ck"><input type="checkbox" class="rk" checked></td><td><span class="tag-mono">ECMCH06250012</span></td><td>HĐLĐ</td><td>Trịnh Thị Bình</td><td>MCH</td><td>GĐ NS duyệt</td><td>thanhnq2</td><td>02/06</td><td><span class="row-act" onclick="location.href='chi-tiet.html'">Xem</span></td></tr>
+      <tr><td class="ck"><input type="checkbox" class="rk"></td><td><span class="tag-mono">ECMCH06250015</span></td><td>Phụ lục HĐLĐ</td><td>Lê Văn Cường</td><td>MCH</td><td>GĐ NS duyệt</td><td>linhvq</td><td>03/06</td><td><span class="row-act" onclick="location.href='chi-tiet.html'">Xem</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- Kết quả lô gần nhất -->
+  <div class="card" style="margin-top:16px"><div class="card-h"><span class="pill">Kết quả lô duyệt gần nhất</span><span class="bdg a">Đang xử lý 18/25</span><span class="hint">Batch #BA-260603-014 · hàng đợi Hangfire</span></div><div class="card-b">
+    <div class="bar"><span class="bdg gr">Thành công 16</span><span class="bdg r">Lỗi/Bỏ qua 2</span><span class="bdg b">Đang xử lý 7</span><span class="sp"></span><button class="btn btn-ghost btn-sm">⟳ Làm mới</button></div>
+    <div class="hint" style="margin-top:8px">2 phiếu bị bỏ qua: ECMCH06250020 (đã có người khác duyệt), ECMCH06250021 (không còn ở bước của bạn).</div>
+  </div></div>
+</div>
+
+<!-- Modal xác nhận Duyệt -->
+<div class="ov" id="mApprove" style="display:none"><div class="modal" style="width:520px">
+  <div class="modal-h">Xác nhận duyệt hàng loạt<span class="x" onclick="EO.closeModal('mApprove')">✕</span></div>
+  <div class="modal-b">
+    <p style="margin:0 0 12px">Bạn sắp <b>Duyệt 3 hợp đồng</b> đã chọn. Hệ thống sẽ kiểm tra quyền &amp; trạng thái từng phiếu, đẩy vào hàng đợi xử lý nền.</p>
+    <div class="field"><label>Ghi chú (áp dụng cả lô)</label><textarea rows="2" placeholder="Tùy chọn"></textarea></div>
+    <div class="note" style="margin-top:12px">Phiếu nào không còn ở bước của bạn sẽ bị bỏ qua &amp; báo lại — không ảnh hưởng phiếu khác.</div>
+    <div class="bar" style="margin-top:14px"><span class="sp"></span><button class="btn btn-ghost" onclick="EO.closeModal('mApprove')">Hủy</button><button class="btn btn-success" onclick="EO.closeModal('mApprove')">Xác nhận duyệt</button></div>
+  </div>
+</div></div>
+<!-- Modal Từ chối -->
+<div class="ov" id="mReject" style="display:none"><div class="modal" style="width:520px">
+  <div class="modal-h">Từ chối hàng loạt<span class="x" onclick="EO.closeModal('mReject')">✕</span></div>
+  <div class="modal-b">
+    <div class="field"><label>Lý do từ chối <span class="req">*</span></label><textarea rows="3" placeholder="Bắt buộc — áp dụng cả lô"></textarea></div>
+    <div class="bar" style="margin-top:14px"><span class="sp"></span><button class="btn btn-ghost" onclick="EO.closeModal('mReject')">Hủy</button><button class="btn btn-danger" onclick="EO.closeModal('mReject')">Xác nhận từ chối</button></div>
+  </div>
+</div></div>
+
+<script src="layout.js"></script><script>EO.mount({crumb:'E-Contract / Phê duyệt hợp đồng', active:'approve'});</script>
+</body></html>

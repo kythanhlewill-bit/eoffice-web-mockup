@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EContract — Mockup</title><link rel="stylesheet" href="styles.css">
+<style>
+.hub{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hub a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;color:var(--text)}
+.hub a:hover{border-color:var(--blue);box-shadow:0 3px 12px rgba(38,128,194,.12)}
+.hub .ic{width:40px;height:40px;border-radius:9px;background:var(--blue-soft);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px}
+.hub h3{margin:0 0 5px;font-size:14px;color:var(--navy)}
+.hub p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+.hub .tk{font-family:Consolas,monospace;font-size:11px;color:var(--blue);margin-top:8px;display:block}
+</style></head>
+<body>
+<div class="eo-content">
+  <div class="page-title">E-Contract — Bộ màn hình (Mockup)
+    <small>Giao diện minh họa theo phong cách EOffice hiện tại. Bấm từng thẻ để mở màn tương ứng.</small></div>
+
+  <div class="note" style="margin-bottom:16px">Mockup tĩnh phục vụ review UI/UX. Dữ liệu là giả lập. Header/sidebar/màu sắc mô phỏng EOffice (navy + accent xanh).</div>
+
+  <div class="hub">
+    <a href="phe-duyet-hang-loat.html"><div class="ic"><i class="ti ti-file-check"></i></div><h3>Phê duyệt hợp đồng</h3><p>Chọn nhiều HĐ → Duyệt/Từ chối → xử lý qua hàng đợi.</p><span class="tk">Duyệt nội bộ</span></a>
+    <a href="danh-sach.html"><div class="ic"><i class="ti ti-list-details"></i></div><h3>Danh sách hợp đồng</h3><p>Grid + lọc + BU scope, tra cứu/quản lý (không phê duyệt).</p><span class="tk">EOFFICE-1361</span></a>
+    <a href="tao-hop-dong.html"><div class="ic"><i class="ti ti-file-plus"></i></div><h3>Tạo hợp đồng</h3><p>3 nguồn: Form động · SAP · Import Excel (boundary scan).</p><span class="tk">EOFFICE-1362/63/64</span></a>
+    <a href="chi-tiet.html"><div class="ic"><i class="ti ti-file-text"></i></div><h3>Chi tiết & vòng đời</h3><p>Thông tin, field, file, tiến trình duyệt, lịch sử, thao tác.</p><span class="tk">EOFFICE-1404</span></a>
+    <a href="cau-hinh-quy-trinh.html"><div class="ic"><i class="ti ti-hierarchy-3"></i></div><h3>Cấu hình quy trình</h3><p>Thiết lập quy trình + setup bước (thêm điều kiện “Theo từ khóa”).</p><span class="tk">EOFFICE-1339</span></a>
+    <a href="cau-hinh-form-dong.html"><div class="ic"><i class="ti ti-forms"></i></div><h3>Cấu hình form động</h3><p>DynamicForm/Field, transformer/computed, nguồn dropdown.</p><span class="tk">EOFFICE-1340/1406</span></a>
+  </div>
+</div>
+<script src="layout.js"></script><script>EO.mount({crumb:'E-Contract', active:''});</script>
+</body></html>

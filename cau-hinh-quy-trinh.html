@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thiết lập quy trình</title><link rel="stylesheet" href="styles.css">
+<style>
+.gear{display:inline-flex;width:26px;height:26px;border-radius:50%;background:#004080;color:#fff;align-items:center;justify-content:center;cursor:pointer;margin-right:6px}
+.delx{color:var(--r);font-size:20px;cursor:pointer;vertical-align:-3px}
+.tbl td .field select,.tbl td .field input{padding:6px 8px;font-size:12px}
+</style></head>
+<body>
+<div class="eo-content">
+  <div class="bar">
+    <button class="btn btn-ghost btn-sm" onclick="location.href='cau-hinh-quy-trinh.html'"><i class="ti ti-arrow-left"></i></button>
+    <div class="page-title" style="margin:0">Thiết lập quy trình
+      <small>Dựa trên màn cấu hình quy trình hiện tại của EOffice — bổ sung điều kiện “Theo từ khóa”.</small></div>
+  </div>
+
+  <!-- THÔNG TIN YÊU CẦU -->
+  <div class="card" style="margin-top:14px"><div class="card-h"><span class="pill blue"><i class="ti ti-info-circle"></i> Thông tin yêu cầu</span></div><div class="card-b">
+    <div class="grid grid-3">
+      <div class="field"><label>Tên quy trình <span class="req">*</span></label><input value="it_test_box_quytrinh" placeholder="Nhập tối đa 200 ký tự"></div>
+      <div class="field"><label>Mô tả <span class="req">*</span></label><input value="it_test_box_quytrinh" placeholder="Nhập tối đa 256 ký tự"></div>
+      <div class="field"><label>Loại bước xử lý</label><select><option>Bước xử lý đơn</option><option>Bước xử lý nhóm</option></select></div>
+      <div class="field"><label>Trình tự <span class="req">*</span></label><select><option>Tuần tự</option><option>Song song</option></select></div>
+      <div class="field"><label>Trạng thái <span class="req">*</span></label><select><option>Hoạt động</option><option>Ngưng hoạt động</option></select></div>
+      <div class="field" style="grid-column:span 1"><label>Ghi chú</label><input value="it_test_box_quytrinh" placeholder="Nhập tối đa 500 ký tự"></div>
+    </div>
+  </div></div>
+
+  <!-- THÔNG TIN PHÊ DUYỆT -->
+  <div class="card"><div class="card-h"><span class="pill blue"><i class="ti ti-checks"></i> Thông tin phê duyệt</span></div><div class="card-b">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr>
+        <th style="width:60px">Bước</th><th>Tên bước</th><th style="width:80px">Trình tự</th>
+        <th>Đơn vị nội bộ/ Đối tác</th><th style="width:90px">Chữ ký</th><th>Loại chữ ký</th>
+        <th>Duyệt và chuyển<br>tiếp quản lý</th><th style="width:80px">#</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><div class="field" style="margin:0"><input value="Tên bước 1"></div></td>
+          <td style="text-align:center"><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i></td>
+          <td><div class="field" style="margin:0"><select><option>Đơn vị nội bộ</option><option>Đối tác</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Có</option><option>Không</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Ký tham gia</option><option>Ký nháy</option><option>Ký phê duyệt chữ ký số</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Không</option><option>Có</option></select></div></td>
+          <td><span class="gear" onclick="EO.openModal('setupModal')"><i class="ti ti-settings"></i></span><i class="ti ti-circle-x delx"></i></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="field" style="margin:0"><input value="Tên bước 2"></div></td>
+          <td style="text-align:center"><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i></td>
+          <td><div class="field" style="margin:0"><select><option>Đơn vị nội bộ</option><option>Đối tác</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Có</option><option>Không</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Ký tham gia</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Không</option><option>Có</option></select></div></td>
+          <td><span class="gear" onclick="EO.openModal('setupModal')"><i class="ti ti-settings"></i></span><i class="ti ti-circle-x delx"></i></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="field" style="margin:0"><input value="Tên bước 3"></div></td>
+          <td style="text-align:center"><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i></td>
+          <td><div class="field" style="margin:0"><select><option>Đơn vị nội bộ</option><option>Đối tác</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Có</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Ký phê duyệt chữ ký số</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Không</option><option>Có</option></select></div></td>
+          <td><span class="gear" onclick="EO.openModal('setupModal')"><i class="ti ti-settings"></i></span><i class="ti ti-circle-x delx"></i></td>
+        </tr>
+      </tbody>
+    </table></div>
+    <div style="text-align:right;margin-top:12px"><button class="btn btn-ghost btn-sm"><i class="ti ti-plus"></i> Thêm người phê duyệt</button></div>
+  </div></div>
+
+  <div class="bar"><span class="sp"></span><button class="btn btn-ghost">Hủy</button><button class="btn btn-primary"><i class="ti ti-device-floppy"></i> Lưu quy trình</button></div>
+</div>
+
+<!-- Modal Setup bước (giữ đúng cấu trúc hiện tại + thêm "Theo từ khóa") -->
+<div class="ov" id="setupModal" style="display:none"><div class="modal">
+  <div class="modal-h">Setup bước : <strong style="margin-left:6px">[1 - Tên bước 1]</strong><span class="x" onclick="EO.closeModal('setupModal')"><i class="ti ti-x"></i></span></div>
+  <div class="modal-b">
+    <div class="bar" style="margin-bottom:14px"><span class="pill blue">Điều kiện cài đặt</span></div>
+    <div class="bar" style="gap:26px;margin-bottom:16px">
+      <label class="tg"><input type="checkbox" checked><span class="track"></span> Thêm người duyệt</label>
+      <label class="tg"><input type="checkbox"><span class="track"></span> Được phép xóa</label>
+      <label class="tg"><input type="checkbox"><span class="track"></span> Được sửa chữ ký và loại chữ ký</label>
+    </div>
+    <div class="field"><label>Điều kiện</label>
+      <select id="condSel" onchange="document.getElementById('kwBox').style.display=this.value=='kw'?'grid':'none'">
+        <option>Theo danh sách email</option>
+        <option>Theo người tạo</option>
+        <option>Theo quản lý trực tiếp</option>
+        <option>Theo cấp quản lý</option>
+        <option>Theo role hệ thống</option>
+        <option>Theo DOA</option>
+        <option>Theo Chữ ký số</option>
+        <option value="kw" selected>★ Theo từ khóa (mới)</option>
+      </select>
+    </div>
+
+    <!-- Khối điều kiện "Theo từ khóa" (mới) -->
+    <div class="grid grid-3" id="kwBox" style="margin-top:12px">
+      <div class="field"><label>Từ khóa (DynamicField)</label><select><option>H_RANK_HD</option><option>H_LOAIHD</option><option>H_SUBTY</option></select></div>
+      <div class="field"><label>Toán tử</label><select><option>=</option><option>IN</option></select></div>
+      <div class="field"><label>Giá trị khớp</label><input value="3up"></div>
+    </div>
+    <div class="note" style="margin-top:12px">“Theo từ khóa”: khi tạo phiếu, engine đọc <span class="tag-mono">EContractDocumentField[H_RANK_HD]</span> để quyết định bước/người duyệt. Các điều kiện cũ (email, role, DOA, cấp quản lý…) giữ nguyên.</div>
+
+    <div class="bar" style="margin-top:16px"><span class="sp"></span><button class="btn btn-ghost" onclick="EO.closeModal('setupModal')">Hủy</button><button class="btn btn-primary" onclick="EO.closeModal('setupModal')">Lưu</button></div>
+  </div>
+</div></div>
+
+<script src="layout.js"></script><script>EO.mount({crumb:'Quy trình / Thiết lập quy trình', active:'wf'});</script>
+</body></html>

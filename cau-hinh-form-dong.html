@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cấu hình form động</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div class="eo-content tabs-root">
+  <div class="page-title">Cấu hình form động (DynamicForm / DynamicField)
+    <small>Metadata form nhập liệu theo mẫu HR. FieldKey = tên merge field H_*. Field tính toán/derived xử lý qua Transformer (whitelist).</small></div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="EO.tab(this,'pane-forms')">Danh sách Form</div>
+    <div class="tab" onclick="EO.tab(this,'pane-fields')">Thiết lập Field — <span class="tag-mono">EC_HDLD</span></div>
+  </div>
+
+  <!-- ===== TAB 1: DANH SÁCH + TẠO/SỬA FORM ===== -->
+  <div class="tabpane active" id="pane-forms">
+    <div class="card"><div class="card-b">
+      <div class="bar">
+        <div class="field" style="min-width:160px"><label>BU/Company</label><select><option>MCH / MSC</option></select></div>
+        <div class="field" style="min-width:160px"><label>DocumentType</label><select><option>EC</option></select></div>
+        <div class="field" style="min-width:160px"><label>Tìm kiếm</label><input placeholder="FormCode / Tên"></div>
+        <button class="btn btn-primary btn-sm" style="align-self:flex-end"><i class="ti ti-search"></i> Lọc</button>
+        <span class="sp"></span>
+        <button class="btn btn-primary btn-sm" style="align-self:flex-end" onclick="openForm('Tạo mới Form')"><i class="ti ti-plus"></i> Tạo form</button>
+      </div>
+    </div></div>
+
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>FormCode</th><th>Tên</th><th>FormType</th><th>BU/Company</th><th>DocType / SubType</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag-mono">EC_HDLD</span></td><td>Form HĐLĐ</td><td>EContractForm</td><td>MCH / MSC</td><td>EC / HDLD</td><td><span class="bdg gr">Hoạt động</span></td>
+          <td><span class="row-act" onclick="openForm('Sửa Form — EC_HDLD')"><i class="ti ti-pencil"></i> Sửa</span> · <span class="row-act" onclick="EO.tab(document.querySelectorAll('.tab')[1],'pane-fields')"><i class="ti ti-list-details"></i> Field</span></td></tr>
+        <tr><td><span class="tag-mono">EC_PLHD</span></td><td>Form Phụ lục HĐLĐ</td><td>EContractForm</td><td>MCH / MSC</td><td>EC / PLHD</td><td><span class="bdg gr">Hoạt động</span></td>
+          <td><span class="row-act" onclick="openForm('Sửa Form — EC_PLHD')"><i class="ti ti-pencil"></i> Sửa</span> · <span class="row-act"><i class="ti ti-list-details"></i> Field</span></td></tr>
+        <tr><td><span class="tag-mono">EC_TMV</span></td><td>Form Thư mời nhận việc</td><td>EContractForm</td><td>MCH / MSC</td><td>EC / TMV</td><td><span class="bdg g">Ngưng</span></td>
+          <td><span class="row-act" onclick="openForm('Sửa Form — EC_TMV')"><i class="ti ti-pencil"></i> Sửa</span> · <span class="row-act"><i class="ti ti-list-details"></i> Field</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- ===== TAB 2: BUILDER FIELD ===== -->
+  <div class="tabpane" id="pane-fields">
+    <div class="bar" style="margin-bottom:10px"><span class="hint">Form <span class="tag-mono">EC_HDLD</span> — kéo thả <i class="ti ti-grip-vertical"></i> để đổi thứ tự</span><span class="sp"></span><button class="btn btn-primary btn-sm" onclick="EO.openModal('mField')"><i class="ti ti-plus"></i> Thêm field</button></div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th style="width:60px">Thứ tự</th><th>FieldKey (H_*)</th><th>Nhãn</th><th>Kiểu</th><th>SourceData</th><th>Transformer</th><th>Bắt buộc</th><th>Hiển thị</th><th>Thao tác</th></tr></thead>
+      <tbody>
+        <tr><td><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i> 1</td><td><span class="tag-mono">H_TEN</span></td><td>Họ tên</td><td>text</td><td>Manual</td><td>—</td><td><i class="ti ti-check" style="color:var(--gr)"></i></td><td><i class="ti ti-check" style="color:var(--gr)"></i></td><td><span class="row-act" onclick="EO.openModal('mField')"><i class="ti ti-pencil"></i> Sửa</span></td></tr>
+        <tr><td><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i> 2</td><td><span class="tag-mono">H_LOAIHD</span></td><td>Loại HĐ</td><td>select</td><td>Api</td><td>—</td><td><i class="ti ti-check" style="color:var(--gr)"></i></td><td><i class="ti ti-check" style="color:var(--gr)"></i></td><td><span class="row-act" onclick="EO.openModal('mField')"><i class="ti ti-pencil"></i> Sửa</span></td></tr>
+        <tr><td><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i> 3</td><td><span class="tag-mono">H_GIOLAMVIEC</span></td><td>Giờ làm việc</td><td>number</td><td>Manual</td><td><span class="bdg b">RoundNumber</span></td><td></td><td><i class="ti ti-check" style="color:var(--gr)"></i></td><td><span class="row-act" onclick="EO.openModal('mField')"><i class="ti ti-pencil"></i> Sửa</span></td></tr>
+        <tr><td><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i> 4</td><td><span class="tag-mono">H_KETTHUCHD</span></td><td>Ngày kết thúc</td><td>date</td><td>Manual</td><td><span class="bdg b">DefaultIfEmpty</span></td><td></td><td><i class="ti ti-check" style="color:var(--gr)"></i></td><td><span class="row-act" onclick="EO.openModal('mField')"><i class="ti ti-pencil"></i> Sửa</span></td></tr>
+        <tr><td><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i> 5</td><td><span class="tag-mono">H_WT1000</span></td><td>Lương cơ bản</td><td>number</td><td>Manual</td><td>—</td><td></td><td><i class="ti ti-check" style="color:var(--gr)"></i></td><td><span class="row-act" onclick="EO.openModal('mField')"><i class="ti ti-pencil"></i> Sửa</span></td></tr>
+        <tr style="background:#f0f6fb"><td><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i> 6</td><td><span class="tag-mono">H_WT1000_TEXT</span></td><td>Lương bằng chữ</td><td>text</td><td><span class="bdg t">Computed ← H_WT1000</span></td><td><span class="bdg b">DocTienBangChu</span></td><td></td><td><span class="bdg g">ẩn</span></td><td><span class="row-act" onclick="EO.openModal('mField')"><i class="ti ti-pencil"></i> Sửa</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note" style="margin-top:12px">Field <b>Computed</b> (vd <span class="tag-mono">H_WT1000_TEXT</span>) ẩn khỏi form — server tự sinh lúc convert (create core). Field <b>select</b> cấu hình nguồn options + cách lưu (mã/chữ).</div>
+  </div>
+</div>
+
+<!-- ===== Modal TẠO/SỬA FORM (DynamicForm) — giao diện tạo/sửa form động ===== -->
+<div class="ov" id="mForm" style="display:none"><div class="modal" style="width:640px">
+  <div class="modal-h" id="mFormTitle">Tạo mới Form<span class="x" onclick="EO.closeModal('mForm')"><i class="ti ti-x"></i></span></div>
+  <div class="modal-b">
+    <div class="bar" style="margin-bottom:10px"><span class="pill blue"><i class="ti ti-info-circle"></i> Thông tin form</span></div>
+    <div class="grid grid-2">
+      <div class="field"><label>FormCode <span class="req">*</span></label><input value="EC_HDLD"></div>
+      <div class="field"><label>FormName <span class="req">*</span></label><input value="Form HĐLĐ"></div>
+      <div class="field"><label>FormType</label><select><option>EContractForm</option></select></div>
+      <div class="field"><label>Trạng thái</label><select><option>Hoạt động</option><option>Ngưng hoạt động</option></select></div>
+    </div>
+    <div class="bar" style="margin:16px 0 10px"><span class="pill blue"><i class="ti ti-affiliate"></i> Gán phạm vi áp dụng</span></div>
+    <div class="grid grid-2">
+      <div class="field"><label>BU</label><select><option>MCH</option><option>WCM</option></select></div>
+      <div class="field"><label>Company</label><select><option>MSC</option></select></div>
+      <div class="field"><label>Function</label><select><option>(Tất cả)</option><option>HR</option></select></div>
+      <div class="field"><label>DocumentType</label><select><option>EC</option></select></div>
+      <div class="field" style="grid-column:1/3"><label>DocumentSubType</label><select><option>HDLD - Hợp đồng lao động</option><option>PLHD - Phụ lục HĐLĐ</option></select></div>
+    </div>
+    <div class="note" style="margin-top:12px">Ràng buộc: tổ hợp <b>Company + DocumentType + DocumentSubType</b> là duy nhất (chặn trùng cấu hình form).</div>
+    <div class="bar" style="margin-top:16px"><span class="sp"></span><button class="btn btn-ghost" onclick="EO.closeModal('mForm')">Hủy</button><button class="btn btn-primary" onclick="EO.closeModal('mForm')"><i class="ti ti-device-floppy"></i> Lưu form</button></div>
+  </div>
+</div></div>
+
+<!-- ===== Modal thiết lập FIELD ===== -->
+<div class="ov" id="mField" style="display:none"><div class="modal" style="width:700px">
+  <div class="modal-h">Thiết lập field<span class="x" onclick="EO.closeModal('mField')"><i class="ti ti-x"></i></span></div>
+  <div class="modal-b">
+    <div class="grid grid-2">
+      <div class="field"><label>FieldKey (= merge H_*) <span class="req">*</span></label><input value="H_LOAIHD"></div>
+      <div class="field"><label>Nhãn (Label)</label><input value="Loại HĐ"></div>
+      <div class="field"><label>Kiểu field (FieldType)</label><select><option selected>select</option><option>text</option><option>number</option><option>date</option><option>checkbox</option></select></div>
+      <div class="field"><label>SourceData</label><select><option>Manual</option><option>Form</option><option>Query</option><option>SAP</option><option>Import</option><option selected>Api</option><option>Computed</option></select></div>
+      <div class="field"><label>Bắt buộc</label><select><option>Có</option><option>Không</option></select></div>
+      <div class="field"><label>Hiển thị / Cho sửa</label><select><option>Hiện &amp; cho sửa</option><option>Hiện, chỉ đọc</option><option>Ẩn</option></select></div>
+    </div>
+
+    <div class="bar" style="margin:16px 0 10px"><span class="pill blue">Nguồn dữ liệu Dropdown (kiểu select)</span></div>
+    <div class="grid grid-2">
+      <div class="field"><label>OptionSource</label><select><option>Static (Options JSON)</option><option>NamedQuery</option><option selected>Api</option></select></div>
+      <div class="field"><label>OptionSourceKey</label><select><option selected>EContractTemplate</option><option>Company</option><option>Function</option><option>Rank</option></select></div>
+      <div class="field"><label>Lưu VALUE (mã) → field</label><select><option selected>H_SUBTY (mã — routing)</option><option>(chính field này)</option></select></div>
+      <div class="field"><label>Lưu TEXT (chữ) → field</label><select><option selected>H_LOAIHD (chữ — in văn bản)</option><option>(không lưu)</option></select></div>
+    </div>
+
+    <div class="bar" style="margin:16px 0 10px"><span class="pill blue">Biến đổi (Transformer) — khi cần</span></div>
+    <div class="grid grid-2">
+      <div class="field"><label>Transformer</label><select><option>(không)</option><option>RoundNumber</option><option>DefaultIfEmpty</option><option>MapValue</option><option>DocTienBangChu</option></select></div>
+      <div class="field"><label>TransformParams (JSON)</label><input placeholder='{"decimals":0,"mode":"HalfUp"}'></div>
+      <div class="field"><label>SourceFieldKey (khi Computed)</label><input placeholder="vd H_WT1000"></div>
+      <div class="field"><label>Validation (JSON)</label><input placeholder='[{"rule":"required"}]'></div>
+    </div>
+
+    <div class="bar" style="margin-top:16px"><span class="sp"></span><button class="btn btn-ghost" onclick="EO.closeModal('mField')">Hủy</button><button class="btn btn-primary" onclick="EO.closeModal('mField')"><i class="ti ti-device-floppy"></i> Lưu field</button></div>
+  </div>
+</div></div>
+
+<script src="layout.js"></script>
+<script>
+EO.mount({crumb:'E-Contract / Cấu hình form động', active:'form'});
+function openForm(title){document.getElementById('mFormTitle').firstChild.nodeValue=title;EO.openModal('mForm');}
+</script>
+</body></html>
