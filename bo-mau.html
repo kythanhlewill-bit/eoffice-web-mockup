@@ -7,6 +7,8 @@
 .flow-note{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px;color:#234}
 .flow-note .chip{background:#fff;border:1px solid var(--blue);color:var(--blue-d);border-radius:6px;padding:3px 8px;font-weight:700}
 .flow-note i{color:#9aa6b2}
+.modal.lg{width:920px;max-width:96%}
+.modal.lg .modal-b{max-height:76vh;overflow:auto}
 </style></head>
 <body>
 <div class="eo-content">
@@ -23,46 +25,51 @@
     <span>chọn <b>WorkFlowDefine</b> theo <b>ConditionKeyWord = ConditionValue</b></span>
   </div></div>
 
-  <!-- DANH SÁCH BỘ MẪU -->
+  <!-- BỘ LỌC + DANH SÁCH -->
   <div class="card"><div class="card-b">
     <div class="grid grid-4">
       <div class="field"><label>Trạng thái</label><select><option>Tất cả</option><option>Hoạt động</option><option>Ngưng hoạt động</option></select></div>
-      <div class="field" style="grid-column:span 2"><label>Từ khóa</label><input placeholder="Tìm: tên/mã bộ mẫu"></div>
-      <div class="bar"><span class="sp"></span><button class="btn btn-primary btn-sm"><i class="ti ti-search"></i> Tìm kiếm</button><button class="btn btn-ghost btn-sm"><i class="ti ti-plus"></i> Thêm</button></div>
+      <div class="field" style="grid-column:span 2"><label>Từ khóa</label><input placeholder="Tìm: tên/mã bộ mẫu, người tạo..."></div>
+      <div class="bar"><span class="sp"></span><button class="btn btn-primary btn-sm"><i class="ti ti-search"></i> Tìm kiếm</button><button class="btn btn-ghost btn-sm" onclick="EO.openModal('mBoMau')"><i class="ti ti-plus"></i> Thêm</button><button class="btn btn-ghost btn-sm"><i class="ti ti-file-export"></i> Xuất Excel</button></div>
     </div>
   </div></div>
 
   <div class="tbl-wrap"><table class="tbl">
-    <thead><tr><th style="width:42px">STT</th><th>Tên bộ mẫu</th><th>Mã bộ mẫu</th><th>Quy trình mặc định</th><th>Đa quy trình</th><th>Trạng thái</th><th>Người tạo</th><th style="width:56px">#</th></tr></thead>
+    <thead><tr><th style="width:42px">STT</th><th>Tên bộ mẫu</th><th>Mã bộ mẫu</th><th>Quy trình mặc định</th><th>Đa quy trình</th><th>Trạng thái</th><th>Người tạo</th><th>Ngày tạo</th><th style="width:56px">#</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>Bộ mẫu HĐLĐ MCH</td><td><span class="tag-mono">MCH_HDLD</span></td><td><span class="tag-mono">MCH_HDLD_STD</span></td><td><span class="bdg t">Có (2 nhánh)</span></td><td><span class="bdg gr">Hoạt động</span></td><td>linhvq</td><td><span class="row-act">Sửa</span></td></tr>
-      <tr><td>2</td><td>Bộ mẫu Phụ lục HĐLĐ</td><td><span class="tag-mono">MCH_PLHDLD</span></td><td><span class="tag-mono">MCH_PLHDLD_STD</span></td><td><span class="bdg g">Không</span></td><td><span class="bdg gr">Hoạt động</span></td><td>linhvq</td><td><span class="row-act">Sửa</span></td></tr>
+      <tr><td>1</td><td>Bộ mẫu HĐLĐ MCH</td><td><span class="tag-mono">MCH_HDLD</span></td><td><span class="tag-mono">MCH_HDLD_STD</span></td><td><span class="bdg t">Có (2 nhánh)</span></td><td><span class="bdg gr">Hoạt động</span></td><td>linhvq</td><td>02-06-2026</td><td><span class="row-act" onclick="EO.openModal('mBoMau')">Sửa</span></td></tr>
+      <tr><td>2</td><td>Bộ mẫu Phụ lục HĐLĐ</td><td><span class="tag-mono">MCH_PLHDLD</span></td><td><span class="tag-mono">MCH_PLHDLD_STD</span></td><td><span class="bdg g">Không</span></td><td><span class="bdg gr">Hoạt động</span></td><td>linhvq</td><td>02-06-2026</td><td><span class="row-act" onclick="EO.openModal('mBoMau')">Sửa</span></td></tr>
+      <tr><td>3</td><td>Bộ mẫu Thư mời nhận việc</td><td><span class="tag-mono">MCH_TMNV</span></td><td><span class="tag-mono">MCH_TMNV_STD</span></td><td><span class="bdg g">Không</span></td><td><span class="bdg r">Ngưng hoạt động</span></td><td>thanhnq2</td><td>28-05-2026</td><td><span class="row-act" onclick="EO.openModal('mBoMau')">Sửa</span></td></tr>
     </tbody>
   </table></div>
+  <div class="bar" style="margin-top:10px"><span class="hint">Hiển thị 1–3 / 24</span><span class="sp"></span>
+    <button class="btn btn-ghost btn-sm">‹</button><button class="btn btn-primary btn-sm">1</button><button class="btn btn-ghost btn-sm">2</button><button class="btn btn-ghost btn-sm">›</button>
+  </div>
+</div>
 
-  <!-- THIẾT LẬP BỘ MẪU (render trong body) -->
-  <div class="section">
-    <span class="sh"><i class="ti ti-template"></i> Thiết lập bộ mẫu : MCH_HDLD <i class="ti ti-chevron-down chev"></i></span>
+<!-- POPUP: THÊM/SỬA BỘ MẪU (dựa theo modal-create/modal-update của EOffice) -->
+<div class="ov" id="mBoMau" style="display:none"><div class="modal lg">
+  <div class="modal-h"><i class="ti ti-template"></i> &nbsp;Thiết lập bộ mẫu quy trình<span class="x" onclick="EO.closeModal('mBoMau')"><i class="ti ti-x"></i></span></div>
+  <div class="modal-b">
     <div class="grid grid-3">
-      <div class="field"><label>Tên bộ mẫu <span class="req">*</span></label><input value="Bộ mẫu HĐLĐ MCH"></div>
-      <div class="field"><label>Mã bộ mẫu <span class="req">*</span></label><input value="MCH_HDLD" readonly></div>
-      <div class="field"><label>Trạng thái <span class="req">*</span></label><select><option>Hoạt động</option><option>Ngưng hoạt động</option></select></div>
+      <div class="field"><label>Tên bộ mẫu <span class="req">*</span></label><input value="Bộ mẫu HĐLĐ MCH" placeholder="Nhập tên bộ mẫu"></div>
       <div class="field"><label>Quy trình mặc định <span class="req">*</span></label><select><option>MCH_HDLD_STD — HĐLĐ tiêu chuẩn</option><option>MCH_HDLD_3UP — HĐLĐ cấp 3up</option></select></div>
-      <div class="field" style="grid-column:span 2"><label>Mô tả</label><input value="Bộ mẫu HĐLĐ — định tuyến theo rank hợp đồng"></div>
+      <div class="field"><label>Trạng thái <span class="req">*</span></label><select><option>Hoạt động</option><option>Ngưng hoạt động</option></select></div>
+      <div class="field" style="grid-column:span 3"><label>Mô tả</label><textarea rows="2" placeholder="Nhập mô tả (tối đa 500 ký tự)">Bộ mẫu HĐLĐ — định tuyến theo rank hợp đồng</textarea></div>
     </div>
 
-    <div class="bar" style="margin:16px 0 8px">
+    <div class="bar" style="margin:14px 0 8px">
       <label class="tg"><input type="checkbox" id="multiTg" checked onclick="document.getElementById('multiGrid').style.display=this.checked?'block':'none'"><span class="track"></span> <b>Định tuyến quy trình theo từ khóa</b> (IsMultiWorkFlow)</label>
       <span class="hint">Bật → 1 bộ mẫu chọn nhiều quy trình theo điều kiện DynamicField.</span>
     </div>
 
     <div id="multiGrid">
-      <div class="sub-h">Các nhánh quy trình theo điều kiện (WorkFlowMulti)</div>
+      <div class="sub-h" style="font-size:12px;color:var(--navy);font-weight:700;margin:6px 0 8px">Các nhánh quy trình theo điều kiện (WorkFlowMulti)</div>
       <div class="tbl-wrap"><table class="tbl">
         <thead><tr>
-          <th style="width:46px">#</th><th>Quy trình (WorkFlowDefine) <span style="color:#ffb3b3">*</span></th>
+          <th style="width:42px">#</th><th>Quy trình (WorkFlowDefine) <span style="color:#ffb3b3">*</span></th>
           <th>Từ khóa (ConditionKeyWord) <span style="color:#ffb3b3">*</span></th><th>Giá trị khớp (ConditionValue) <span style="color:#ffb3b3">*</span></th>
-          <th style="width:96px">Trạng thái</th><th>Ghi chú</th><th style="width:48px"></th>
+          <th style="width:92px">Trạng thái</th><th>Ghi chú</th><th style="width:42px"></th>
         </tr></thead>
         <tbody>
           <tr>
@@ -86,11 +93,12 @@
         </tbody>
       </table></div>
       <div style="text-align:right;margin-top:12px"><span class="row-act"><i class="ti ti-plus"></i> Thêm nhánh điều kiện</span></div>
-      <div class="note" style="margin-top:12px">Lúc tạo HĐ, engine đọc <span class="tag-mono">EContractDocumentField[ConditionKeyWord]</span> và so với <b>ConditionValue</b> để chọn <b>WorkFlowDefine</b>. Không nhánh nào khớp → dùng <b>quy trình mặc định</b> (hoặc reject + báo lỗi — BR11). Cặp (bộ mẫu, quy trình) là <b>UNIQUE</b>; <code>ConditionKeyWord</code> chọn từ danh mục DynamicField, không nhập tự do.</div>
+      <div class="note" style="margin-top:12px">Lúc tạo HĐ, engine đọc <span class="tag-mono">EContractDocumentField[ConditionKeyWord]</span> so với <b>ConditionValue</b> để chọn <b>WorkFlowDefine</b>. Không nhánh nào khớp → dùng <b>quy trình mặc định</b> (hoặc reject — BR11). Cặp (bộ mẫu, quy trình) <b>UNIQUE</b>; <code>ConditionKeyWord</code> chọn từ danh mục DynamicField.</div>
     </div>
 
-    <div class="bar" style="margin-top:14px"><span class="sp"></span><button class="btn btn-ghost">Hủy</button><button class="btn btn-primary"><i class="ti ti-device-floppy"></i> Lưu bộ mẫu</button></div>
+    <div class="bar" style="margin-top:16px"><span class="sp"></span><button class="btn btn-ghost" onclick="EO.closeModal('mBoMau')">Hủy</button><button class="btn btn-primary" onclick="EO.closeModal('mBoMau')"><i class="ti ti-device-floppy"></i> Lưu bộ mẫu</button></div>
   </div>
-</div>
+</div></div>
+
 <script src="layout.js"></script><script>EO.mount({crumb:'Bộ mẫu quy trình', active:'bomau'});</script>
 </body></html>
