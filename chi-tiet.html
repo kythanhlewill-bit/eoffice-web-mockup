@@ -1,80 +1,171 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Chi tiết E-Contract</title><link rel="stylesheet" href="styles.css">
-<style>.two{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}@media(max-width:1100px){.two{grid-template-columns:1fr}}</style></head>
+<style>
+.actionbar{position:sticky;top:var(--hdr-h);z-index:20;background:var(--bg);padding:8px 0;margin-bottom:6px}
+/* khối thông tin nền xanh nhạt giống infoContainer/bg-approval của EOffice */
+.infobox{background:#f1f7fc;border:1px solid #dbe8f4;border-radius:10px;padding:16px}
+.info-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 18px;font-size:12.5px}
+.info-row .it b{color:var(--navy)}
+.col3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+@media(max-width:1000px){.info-row,.col3{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.info-row,.col3{grid-template-columns:1fr}}
+.party{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.party h6{margin:0 0 8px;font-size:12px;font-weight:800;color:var(--navy);letter-spacing:.3px;border-bottom:1px solid var(--line-2);padding-bottom:6px}
+.party .it{font-size:12.5px;margin:6px 0}
+.party .it b{color:#46535f}
+/* workflow info bar */
+.wf-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.wf-item{display:flex;align-items:center;gap:6px;background:#f4f6f8;border:1px solid var(--line-2);border-radius:6px;padding:6px 10px;font-size:12px}
+.wf-item .l{color:var(--muted);font-weight:600}.wf-item .v{color:var(--blue-d);font-weight:700}
+.fileitem{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line-2);border-radius:8px;background:#fbfcfe;margin-bottom:8px}
+.fileitem .fi{font-size:20px;color:#c0392b}
+.fileitem a{color:var(--blue-d);font-weight:700;text-decoration:none}
+/* timeline lịch sử (giống timeline-widget của EOffice) */
+.tl{list-style:none;margin:0;padding:6px 0}
+.tl li{display:flex;gap:0;padding-bottom:2px}
+.tl .tl-t{width:130px;flex:0 0 130px;text-align:right;padding-right:12px;font-size:11.5px;color:#46535f}
+.tl .tl-mid{display:flex;flex-direction:column;align-items:center}
+.tl .tl-dot{width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--blue);margin-top:3px}
+.tl li.done .tl-dot{border-color:var(--gr);background:var(--gr-bg)}
+.tl .tl-line{flex:1;width:2px;background:var(--line)}
+.tl li:last-child .tl-line{background:transparent}
+.tl .tl-d{padding:0 0 16px 14px;font-size:12.5px}
+.tl .tl-d .who{font-weight:700;color:var(--navy)}
+.tl .tl-d .em{color:var(--muted);font-weight:400;font-style:italic}
+</style></head>
 <body>
-<div class="eo-content">
-  <div class="bar">
-    <div class="page-title" style="margin:0">Chi tiết hợp đồng — <span class="tag-mono">ECMCH06250001</span>
-      <small>Hợp đồng lao động · Trần Nhật Vy · BU MCH</small></div>
-    <span class="sp"></span><span class="bdg b" style="font-size:12px;padding:5px 12px">Đang xử lý</span>
-  </div>
+<div class="eo-content tabs-root">
 
-  <!-- Thanh thao tác vòng đời -->
-  <div class="bar" style="margin:12px 0 16px">
-    <button class="btn btn-ghost btn-sm" disabled title="Chỉ ở trạng thái Nháp">✎ Sửa</button>
-    <button class="btn btn-primary btn-sm" disabled>↥ Gửi duyệt</button>
-    <button class="btn btn-ghost btn-sm">⭳ Tải PDF</button>
-    <button class="btn btn-ghost btn-sm">↻ Gửi lại link ký</button>
+  <!-- THANH THAO TÁC (action-sticky của EOffice: Quay lại + nhóm nút duyệt) -->
+  <div class="actionbar bar">
+    <button class="btn btn-ghost btn-sm" onclick="location.href='danh-sach.html'"><i class="ti ti-arrow-left"></i> Quay lại</button>
     <span class="sp"></span>
-    <button class="btn btn-danger btn-sm">✕ Hủy ký</button>
+    <button class="btn btn-success btn-sm"><i class="ti ti-check"></i> Duyệt</button>
+    <button class="btn btn-success btn-sm"><i class="ti ti-checks"></i> Xác nhận và chuyển tiếp</button>
+    <button class="btn btn-danger btn-sm"><i class="ti ti-x"></i> Từ chối</button>
+    <button class="btn btn-ghost btn-sm"><i class="ti ti-transform"></i> Chuyển người xử lý</button>
+    <button class="btn btn-ghost btn-sm"><i class="ti ti-download"></i> Tải tất cả file</button>
+    <button class="btn btn-ghost btn-sm"><i class="ti ti-share"></i> Chia sẻ</button>
   </div>
 
-  <div class="two">
-    <div>
-      <div class="card"><div class="card-h"><span class="pill blue">Thông tin chung</span></div><div class="card-b">
-        <div class="kv">
-          <div class="k">Mã HĐ / Số HĐ</div><div><span class="tag-mono">ECMCH06250001</span> · 6370100/HĐ-WCM/260602-01</div>
-          <div class="k">Loại hợp đồng</div><div>Hợp đồng lao động (Hợp đồng đào tạo nghề)</div>
-          <div class="k">Người lao động</div><div>Trần Nhật Vy — 6370100</div>
-          <div class="k">Email / Mobile</div><div>nhattvyy1501@gmail.com</div>
-          <div class="k">Công ty / BU / Function</div><div>WinCommerce · MCH · Testing Mass Upload</div>
-          <div class="k">Hiệu lực</div><div>02/06/2026 → 31/07/2026</div>
-          <div class="k">Người tạo</div><div>thanhnq2 · 02/06/2026</div>
-          <div class="k">Hình thức ký NLĐ</div><div>VNPT SmartCA (eKYC)</div>
-        </div>
-      </div></div>
+  <div class="page-title" style="margin:6px 0 8px">Chi tiết hợp đồng điện tử
+    <small>Mã HĐ <span class="tag-mono">ECMCH06250001</span> · Hợp đồng lao động · Trần Nhật Vy
+      &nbsp;<span class="bdg b">Đang xử lý</span></small></div>
 
-      <div class="card"><div class="card-h"><span class="pill">Dữ liệu field (merge)</span><span class="hint">EContractDocumentField</span></div><div class="card-b">
-        <div class="tbl-wrap"><table class="tbl"><thead><tr><th>FieldKey</th><th>Giá trị</th></tr></thead><tbody>
-          <tr><td><span class="tag-mono">H_LOAIHD</span></td><td>Hợp đồng đào tạo nghề</td></tr>
-          <tr><td><span class="tag-mono">H_GIOLAMVIEC</span></td><td>48</td></tr>
-          <tr><td><span class="tag-mono">H_WT1000</span></td><td>5.500.000</td></tr>
-          <tr><td><span class="tag-mono">H_WT1000_TEXT</span></td><td><i>năm triệu năm trăm nghìn đồng</i> <span class="bdg g">computed</span></td></tr>
-          <tr><td><span class="tag-mono">H_RANK_HD</span></td><td>not3up</td></tr>
-        </tbody></table></div>
-      </div></div>
+  <!-- ① THÔNG TIN CHI TIẾT -->
+  <div class="section">
+    <span class="sh"><i class="ti ti-info-circle"></i> Thông tin chi tiết <i class="ti ti-chevron-down chev"></i></span>
+    <div class="infobox">
+      <div class="info-row">
+        <div class="it"><b>Mã tài liệu:</b> <span class="tag-mono">ECMCH06250001</span></div>
+        <div class="it"><b>Số hợp đồng:</b> 6370100/HĐ-WCM/260602-01</div>
+        <div class="it"><b>Loại hợp đồng:</b> HĐLĐ (Đào tạo nghề)</div>
+        <div class="it"><b>Công ty:</b> WinCommerce · BU MCH</div>
+        <div class="it"><b>Người tạo:</b> thanhnq2</div>
+        <div class="it"><b>Ngày tạo:</b> 02/06/2026 09:00</div>
+        <div class="it"><b>Trạng thái:</b> <span class="bdg b">Đang xử lý</span></div>
+        <div class="it"><b>Nguồn tạo:</b> Import Excel</div>
+        <div class="it"><b>Bộ mẫu:</b> <span class="tag-mono">MCH_HDLD</span></div>
+      </div>
 
-      <div class="card"><div class="card-h"><span class="pill">Trạng thái ký</span></div><div class="card-b">
-        <div class="kv">
-          <div class="k">Doanh nghiệp (AHA)</div><div><span class="bdg gr">Đã ký</span> — VNPT SmartCA TH · 02/06/2026</div>
-          <div class="k">Người lao động</div><div><span class="bdg a">Chờ ký</span> — link gửi qua email/SMS, hạn 09/06/2026</div>
+      <div class="col3">
+        <div class="party">
+          <h6>THÔNG TIN BÊN A (ĐƠN VỊ)</h6>
+          <div class="it"><b>Tên công ty:</b> CP DVTM Tổng hợp WinCommerce</div>
+          <div class="it"><b>Người đại diện:</b> Đại diện công ty (ký số CMC)</div>
+          <div class="it"><b>Khối / Phòng:</b> Testing Mass Upload</div>
         </div>
-      </div></div>
-    </div>
+        <div class="party">
+          <h6>THÔNG TIN BÊN B (NGƯỜI LAO ĐỘNG)</h6>
+          <div class="it"><b>Họ tên:</b> Trần Nhật Vy</div>
+          <div class="it"><b>MSNV:</b> 6370100</div>
+          <div class="it"><b>Email:</b> nhattvyy1501@gmail.com</div>
+          <div class="it"><b>Hình thức ký:</b> CMC CA (eKYC)</div>
+        </div>
+        <div class="party">
+          <h6>THÔNG TIN CHUNG</h6>
+          <div class="it"><b>Ngày hiệu lực:</b> 02/06/2026</div>
+          <div class="it"><b>Ngày hết hiệu lực:</b> 31/07/2026</div>
+          <div class="it"><b>Hạn ký của NLĐ:</b> 09/06/2026</div>
+          <div class="it"><b>Loại văn bản (subtype):</b> HDL</div>
+        </div>
+      </div>
 
-    <div>
-      <div class="card"><div class="card-h"><span class="pill blue">Tiến trình duyệt</span></div><div class="card-b">
-        <div class="steps">
-          <div class="step done"><div class="dot">✓</div><div><b>Tạo &amp; gửi duyệt</b><div class="hint">thanhnq2 · 02/06 09:12</div></div></div>
-          <div class="step done"><div class="dot">✓</div><div><b>Trưởng phòng NS duyệt</b><div class="hint">Nguyễn Q. Thành · 02/06 10:05</div></div></div>
-          <div class="step cur"><div class="dot">3</div><div><b>Giám đốc NS duyệt</b> <span class="bdg b">đang xử lý</span><div class="hint">Phạm Thị Thu Hương</div></div></div>
-          <div class="step"><div class="dot">4</div><div>Ký doanh nghiệp (tự động)<div class="hint">VNPT SmartCA TH</div></div></div>
-          <div class="step"><div class="dot">5</div><div>NLĐ ký (eKYC)<div class="hint">VNPT SmartCA</div></div></div>
-          <div class="step"><div class="dot">6</div><div>Lưu trữ &amp; đẩy SF</div></div>
-        </div>
-      </div></div>
-
-      <div class="card"><div class="card-h"><span class="pill">Lịch sử</span></div><div class="card-b">
-        <div class="kv" style="grid-template-columns:110px 1fr">
-          <div class="k">02/06 10:05</div><div>Trưởng phòng NS <b>Duyệt</b></div>
-          <div class="k">02/06 09:30</div><div>DN ký tự động (AHASigned=1)</div>
-          <div class="k">02/06 09:12</div><div>thanhnq2 <b>Gửi duyệt</b> (Draft → Đang xử lý)</div>
-          <div class="k">02/06 09:00</div><div>thanhnq2 tạo hợp đồng (import Excel)</div>
-        </div>
-      </div></div>
+      <!-- Field merge (chỉ nhánh Excel/SAP) -->
+      <div class="sub-h" style="margin-top:18px">Thông tin field (merge) — <span class="hint" style="font-weight:400">EContractDocumentField</span></div>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th style="width:220px">FieldKey</th><th>Giá trị</th></tr></thead><tbody>
+        <tr><td><span class="tag-mono">H_LOAIHD</span></td><td>Hợp đồng đào tạo nghề</td></tr>
+        <tr><td><span class="tag-mono">H_GIOLAMVIEC</span></td><td>48</td></tr>
+        <tr><td><span class="tag-mono">H_WT1000</span></td><td>5.500.000</td></tr>
+        <tr><td><span class="tag-mono">H_WT1000_TEXT</span></td><td><i>năm triệu năm trăm nghìn đồng</i> <span class="bdg g">computed</span></td></tr>
+        <tr><td><span class="tag-mono">H_RANK_HD</span></td><td>not3up</td></tr>
+      </tbody></table></div>
     </div>
   </div>
+
+  <!-- ② FILE ĐÍNH KÈM -->
+  <div class="section">
+    <span class="sh"><i class="ti ti-paperclip"></i> File đính kèm <i class="ti ti-chevron-down chev"></i></span>
+    <div class="sub-h">Files</div>
+    <div class="fileitem"><i class="ti ti-file-type-pdf fi"></i><a href="#">HDLD_TranNhatVy_6370100.pdf</a><span class="hint">· 248 KB · bản gốc</span><span class="sp" style="margin-left:auto"></span><span class="bdg t">Đã ký DN</span></div>
+    <div class="fileitem"><i class="ti ti-file-type-pdf fi"></i><a href="#">HDLD_TranNhatVy_6370100_signed.pdf</a><span class="hint">· chờ NLĐ ký</span></div>
+    <div class="bar" style="margin-top:6px"><button class="btn btn-ghost btn-sm"><i class="ti ti-eye"></i> Xem trước</button><button class="btn btn-ghost btn-sm"><i class="ti ti-download"></i> Tải tất cả các file</button></div>
+  </div>
+
+  <!-- ③ THÔNG TIN PHÊ DUYỆT -->
+  <div class="section">
+    <span class="sh"><i class="ti ti-checks"></i> Thông tin phê duyệt <i class="ti ti-chevron-down chev"></i></span>
+    <div class="wf-bar">
+      <div class="wf-item"><span class="l">Điều kiện thiết lập:</span><span class="v">Tự động theo quy trình thiết lập sẵn</span></div>
+      <div class="wf-item"><span class="l">Quy trình ký:</span><span class="v">Tuần tự</span></div>
+      <div class="wf-item"><span class="l">Mẫu quy trình:</span><span class="v">MCH_HDLD (not3up)</span></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th style="width:46px">#</th><th>Tên bước</th><th>Người phê duyệt</th><th>Email</th><th style="width:120px">Loại ký</th><th style="width:130px">Vị trí ký</th><th style="width:120px">Trạng thái</th><th style="width:130px">Ngày phê duyệt</th><th style="width:96px">Thao tác</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Tạo &amp; gửi duyệt</td><td>Nguyễn Q. Thành</td><td>thanhnq2@masangroup.com</td><td>—</td><td>—</td><td><span class="bdg gr">Đã duyệt</span></td><td>02/06 09:12</td><td></td></tr>
+        <tr><td>2</td><td>Trưởng phòng NS duyệt</td><td>Nguyễn Q. Thành</td><td>tpns@masangroup.com</td><td>Kiểm tra</td><td>—</td><td><span class="bdg gr">Đã duyệt</span></td><td>02/06 10:05</td><td></td></tr>
+        <tr><td>3</td><td>Giám đốc NS duyệt</td><td>Phạm Thị Thu Hương</td><td>gdns@masangroup.com</td><td>Ký phê duyệt CKS</td><td>Trang 2</td><td><span class="bdg b">Đang chờ duyệt</span></td><td>—</td>
+          <td><span class="row-act" title="Gửi lại email"><i class="ti ti-send"></i></span> &nbsp; <span class="row-act" title="Chuyển người xử lý"><i class="ti ti-transform"></i></span></td></tr>
+        <tr><td>4</td><td>Ký doanh nghiệp (tự động)</td><td>Đại diện công ty</td><td>—</td><td>Ký số CMC</td><td>Trang 2</td><td><span class="bdg g">Chờ tới lượt</span></td><td>—</td><td></td></tr>
+        <tr><td>5</td><td>Người lao động ký</td><td>Trần Nhật Vy</td><td>nhattvyy1501@gmail.com</td><td>Ký số CMC (eKYC)</td><td>Trang 2</td><td><span class="bdg g">Chờ tới lượt</span></td><td>—</td>
+          <td><span class="row-act" title="Gửi lại link ký"><i class="ti ti-send"></i></span></td></tr>
+        <tr><td>6</td><td>Lưu trữ &amp; đẩy SuccessFactors</td><td>Hệ thống</td><td>—</td><td>—</td><td>—</td><td><span class="bdg g">Chờ tới lượt</span></td><td>—</td><td></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- ④ TAB: THẢO LUẬN / LỊCH SỬ -->
+  <div class="section" style="padding-top:18px">
+    <div class="tabs" style="margin-bottom:14px">
+      <div class="tab active" onclick="EO.tab(this,'pane-cmt')"><i class="ti ti-message-circle"></i> Thảo luận</div>
+      <div class="tab" onclick="EO.tab(this,'pane-his')"><i class="ti ti-history"></i> Lịch sử</div>
+    </div>
+
+    <div class="tabpane active" id="pane-cmt">
+      <div class="bar" style="border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff">
+        <input class="field" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:9px 10px" placeholder="Nhập trao đổi…">
+        <button class="btn btn-ghost btn-sm"><i class="ti ti-mood-smile"></i></button>
+        <button class="btn btn-ghost btn-sm"><i class="ti ti-paperclip"></i></button>
+        <button class="btn btn-primary btn-sm">Gửi</button>
+      </div>
+      <div style="margin-top:14px">
+        <div style="margin-bottom:12px"><div class="hint"><b style="color:var(--navy)">Nguyễn Q. Thành</b> · 02/06 10:05 <span class="bdg gr">Duyệt</span></div><div style="background:#f4f6f8;border-radius:8px;padding:9px 12px;display:inline-block;margin-top:4px">Đã kiểm tra thông tin HĐ, đồng ý chuyển GĐ NS.</div></div>
+        <div style="text-align:right"><div class="hint">Bạn · 02/06 10:12</div><div style="background:var(--blue-soft);border-radius:8px;padding:9px 12px;display:inline-block;margin-top:4px">Đã rõ, theo dõi bước ký số CMC.</div></div>
+      </div>
+    </div>
+
+    <div class="tabpane" id="pane-his">
+      <ul class="tl">
+        <li class="done"><div class="tl-t">02/06 10:05<br><span class="bdg gr">Duyệt</span></div><div class="tl-mid"><span class="tl-dot"></span><span class="tl-line"></span></div><div class="tl-d"><span class="who">Nguyễn Q. Thành</span> <span class="em">tpns@masangroup.com</span><br>Trưởng phòng NS duyệt bước 2.</div></li>
+        <li class="done"><div class="tl-t">02/06 09:30<br><span class="bdg t">Ký DN</span></div><div class="tl-mid"><span class="tl-dot"></span><span class="tl-line"></span></div><div class="tl-d"><span class="who">Đại diện công ty</span><br>DN ký tự động (AHASigned=1) — CMC CA.</div></li>
+        <li class="done"><div class="tl-t">02/06 09:12<br><span class="bdg b">Gửi duyệt</span></div><div class="tl-mid"><span class="tl-dot"></span><span class="tl-line"></span></div><div class="tl-d"><span class="who">thanhnq2</span><br>Gửi duyệt (Nháp → Đang xử lý).</div></li>
+        <li class="done"><div class="tl-t">02/06 09:00<br><span class="bdg g">Tạo</span></div><div class="tl-mid"><span class="tl-dot"></span><span class="tl-line"></span></div><div class="tl-d"><span class="who">thanhnq2</span><br>Tạo hợp đồng từ import Excel.</div></li>
+      </ul>
+    </div>
+  </div>
+
 </div>
 <script src="layout.js"></script><script>EO.mount({crumb:'E-Contract / Chi tiết', active:'list'});</script>
 </body></html>

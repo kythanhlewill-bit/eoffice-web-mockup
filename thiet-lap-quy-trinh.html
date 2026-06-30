@@ -100,11 +100,9 @@
       </select>
     </div>
     <div class="grid grid-3" id="kwBox" style="margin-top:12px">
-      <div class="field"><label>Từ khóa (DynamicField)</label><select><option>H_RANK_HD</option><option>H_LOAIHD</option><option>H_SUBTY</option></select></div>
-      <div class="field"><label>Toán tử</label><select><option>=</option><option>IN</option></select></div>
-      <div class="field"><label>Giá trị khớp</label><input value="3up"></div>
+      <div class="field" style="grid-column:span 2"><label>Từ khóa lấy người duyệt (DynamicField)</label><select><option>H_QUANLY_TRUCTIEP</option><option>H_GIAMDOC_NS</option><option>H_RANK_HD</option><option>H_LOAIHD</option><option>H_SUBTY</option></select></div>
     </div>
-    <div class="note" style="margin-top:12px">“Theo từ khóa”: khi tạo phiếu, engine đọc <span class="tag-mono">EContractDocumentField[H_RANK_HD]</span> để quyết định bước/người duyệt. Các điều kiện cũ giữ nguyên.</div>
+    <div class="note" style="margin-top:12px">“Theo từ khóa”: chỉ chọn <b>trường nguồn</b> chứa người duyệt/ký của bước này. Khi tạo HĐ E-Contract, engine đọc giá trị field tương ứng trong <span class="tag-mono">EContractDocumentField</span> (vd email/MSNV người duyệt) để map ra người xử lý bước này → sinh dòng <span class="tag-mono">WorkFlowProcessTransitionByUser</span>. Không cần toán tử / giá trị khớp (đây không phải điều kiện rẽ nhánh). Các điều kiện cũ giữ nguyên.</div>
     <div class="bar" style="margin-top:16px"><span class="sp"></span><button class="btn btn-ghost" onclick="EO.closeModal('setupModal')">Hủy</button><button class="btn btn-primary" onclick="EO.closeModal('setupModal')">Lưu</button></div>
   </div>
 </div></div>
