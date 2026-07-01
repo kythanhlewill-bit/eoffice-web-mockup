@@ -35,7 +35,7 @@
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr>
         <th style="width:56px">Bước</th><th>Tên bước</th><th style="width:90px">Trình tự</th>
-        <th>Đơn vị nội bộ/ Đối tác</th><th style="width:96px">Chữ ký</th><th>Loại chữ ký</th>
+        <th>Đối tượng ký<br><span class="hint" style="font-weight:400">(Đơn vị nội bộ / Đối tác / NLĐ)</span></th><th style="width:96px">Chữ ký</th><th>Loại chữ ký</th>
         <th>Duyệt và chuyển<br>tiếp quản lý</th><th style="width:80px">#</th>
       </tr></thead>
       <tbody>
@@ -43,7 +43,7 @@
           <td>1</td>
           <td><div class="field" style="margin:0"><input value="Quản lý trực tiếp duyệt"></div></td>
           <td style="text-align:center"><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i></td>
-          <td><div class="field" style="margin:0"><select><option>Đơn vị nội bộ</option><option>Đối tác</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Đơn vị nội bộ</option><option>Đối tác</option><option>Người lao động</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Kiểm tra</option><option>Có</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Ký tham gia</option><option>Ký nháy</option><option>Ký phê duyệt chữ ký số</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Không</option><option>Có</option></select></div></td>
@@ -53,7 +53,7 @@
           <td>2</td>
           <td><div class="field" style="margin:0"><input value="GĐ Nhân sự duyệt"></div></td>
           <td style="text-align:center"><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i></td>
-          <td><div class="field" style="margin:0"><select><option>Đơn vị nội bộ</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option>Đơn vị nội bộ</option><option>Đối tác</option><option>Người lao động</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Có</option><option>Kiểm tra</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Ký phê duyệt chữ ký số</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Có</option><option>Không</option></select></div></td>
@@ -63,7 +63,7 @@
           <td>3</td>
           <td><div class="field" style="margin:0"><input value="Người lao động ký"></div></td>
           <td style="text-align:center"><i class="ti ti-grip-vertical" style="color:#9aa6b2"></i></td>
-          <td><div class="field" style="margin:0"><select><option>Đối tác</option><option>Đơn vị nội bộ</option></select></div></td>
+          <td><div class="field" style="margin:0"><select><option selected>Người lao động</option><option>Đơn vị nội bộ</option><option>Đối tác</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Có</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Ký phê duyệt chữ ký số</option></select></div></td>
           <td><div class="field" style="margin:0"><select><option>Không</option></select></div></td>
@@ -72,6 +72,7 @@
       </tbody>
     </table></div>
     <div style="text-align:right;margin-top:12px"><span class="row-act"><i class="ti ti-plus"></i> Thêm người phê duyệt</span> &nbsp; <span class="row-act"><i class="ti ti-plus"></i> Thêm bước xử lý nhóm</span></div>
+    <div class="note" style="margin-top:14px"><b>Đối tượng ký</b> phân biệt dịch vụ ký số khi tạo HĐ E-Contract: <b>Đơn vị nội bộ</b> = ký doanh nghiệp/con dấu pháp nhân (CMC, tự động); <b>Người lao động</b> (mới) = gọi service <b>ký eKYC của CMC</b> (cá nhân NLĐ); <b>Đối tác</b> = bên ngoài (esign/eKYC tùy cấu hình). → E-Contract hỗ trợ <b>cả Doanh nghiệp và Người lao động</b> (bổ sung loại NLĐ so với chốt trước đây).</div>
   </div>
 
   <div class="bar"><button class="btn btn-ghost btn-sm"><i class="ti ti-code"></i> Nhập mẫu quy trình (JSON)</button><span class="sp"></span><button class="btn btn-ghost" onclick="location.href='cau-hinh-quy-trinh.html'">Hủy</button><button class="btn btn-primary"><i class="ti ti-device-floppy"></i> Lưu quy trình</button></div>
